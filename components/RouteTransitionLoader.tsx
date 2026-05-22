@@ -1,0 +1,60 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+
+export default function RouteTransitionLoader() {
+  const pathname = usePathname();
+  const [isVisible, setIsVisible] = useState(false);
+  const prevPathRef = useRef(pathname);
+  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href');
+      if (!href || !href.startsWith('/')) return;
+      const targetPath = href.split('?')[0].split('#')[0];
+      if (targetPath === pathname) return;
+      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+      setIsVisible(true);
+    };
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname === prevPathRef.current) return;
+    prevPathRef.current = pathname;
+    if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
+    hideTimerRef.current = setTimeout(() => {
+      setIsVisible(false);
+      hideTimerRef.current = null;
+    }, 400);
+  }, [pathname]);
+
+  useEffect(() => {
+    return () => { if (hideTimerRef.current) clearTimeout(hideTimerRef.current); };
+  }, []);
+
+  return (
+    <div
+      aria-hidden="true"
+      style={{ willChange: 'opacity' }}
+      className={`fixed inset-0 z-9999 flex items-center justify-center bg-white transition-opacity duration-150 ${
+        isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      }`}
+    >
+      <Image
+        src="/logo.svg"
+        alt=""
+        width={80}
+        height={80}
+        className="animate-spin object-contain"
+        priority
+      />
+    </div>
+  );
+}

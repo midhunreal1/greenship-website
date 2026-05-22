@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a2a4a;
+  /* Deep ocean blue — primary dark */
+  --navy: #0a1e3c;
+  --navy-dark: #051225;
+  /* Ocean blue — primary accent */
+  --teal: #97baff;
+  --teal-dark: #005f92;
+  /* Logo leaf green — secondary accent */
+  --ocean: #2d9e2d;
+  --ocean-dark: #1a6518;
+  /* Neutral backgrounds */
+  --light-grey: #f0f7ff;
+  --medium-grey: #dce8f5;
+  /* Logo red — used sparingly */
+  --accent: #c41e1e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy: var(--navy);
+  --color-navy-dark: var(--navy-dark);
+  --color-teal: var(--teal);
+  --color-teal-dark: var(--teal-dark);
+  --color-ocean: var(--ocean);
+  --color-ocean-dark: var(--ocean-dark);
+  --color-light-grey: var(--light-grey);
+  --color-medium-grey: var(--medium-grey);
+  --color-accent: var(--accent);
+  --color-teal-dark: var(--teal-dark);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-body);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.035em;
+}
+
+h3 {
+  font-size: clamp(1.4rem, 3vw, 1.875rem);
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: clamp(1.1rem, 2vw, 1.375rem);
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+p {
+  line-height: 1.75;
+  letter-spacing: 0.005em;
+}
+
+strong, b {
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.gradient-ocean {
+  background: linear-gradient(135deg, #0077b6 0%, #005f92 100%);
+}
+
+.gradient-navy {
+  background: linear-gradient(135deg, #0a1e3c 0%, #051225 100%);
+}
+
+.gradient-maritime {
+  background: linear-gradient(135deg, #0077b6 0%, #2d9e2d 100%);
+}
+
+/* Hide Google Translate toolbar */
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+div#goog-gt-tt,
+div.goog-te-balloon-frame {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  color: transparent !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+body.translated-ltr {
+  top: 0 !important;
+}
+
+.skiptranslate iframe {
+  display: none !important;
+}
+
+/* ── Dark mode ──────────────────────────────────────────────────────── */
+html.dark {
+  --background:  #06101e;
+  --foreground:  #e8f0ff;
+  --light-grey:  #09152a;
+  --medium-grey: #112038;
+  color-scheme: dark;
+}
+
+html.dark body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ── Backgrounds ── */
+html.dark .bg-white        { background-color: #0e1a30 !important; }
+html.dark .bg-light-grey,
+html.dark .bg-gray-50,
+html.dark .bg-gray-100     { background-color: #09152a !important; }
+html.dark .bg-white\/95    { background-color: rgba(5, 13, 26, 0.98) !important; }
+
+/* ── Borders ── */
+html.dark .border-gray-100 { border-color: #1a2d47 !important; }
+html.dark .border-gray-200 { border-color: #1a2d47 !important; }
+html.dark .border-gray-700 { border-color: #1e3050 !important; }
+
+/* ── Navbar: white card stays white in dark mode; text explicit ── */
+html.dark nav .bg-white\/95 { background-color: rgba(5,13,26,0.98) !important; }
+html.dark nav a, html.dark nav button { color: #ffffff; }
+html.dark nav a:hover, html.dark nav button:hover { opacity: 0.75; color: #ffffff; }
+
+/* ── Navbar logo text ── */
+html.dark nav .bg-clip-text {
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  background-image: none !important;
+}
+html.dark nav .text-transparent { color: #bfdbfe !important; }
+
+/* ── Accent colours — ensure visible on dark card surfaces ── */
+html.dark .text-teal       { color: #60b4ff !important; }
+html.dark .text-teal-dark  { color: #4da6f5 !important; }
+html.dark .text-ocean      { color: #6ee7a0 !important; }
+html.dark .text-ocean-dark { color: #4ade80 !important; }
+
+/* ── Primary text colours ── */
+html.dark .text-navy       { color: #93c5fd !important; }
+html.dark .text-foreground { color: #e8f0ff !important; }
+
+/* ── Gray scale — map all gray shades to readable light tones ── */
+html.dark .text-gray-900,
+html.dark .text-gray-800   { color: #e8f0ff !important; }
+html.dark .text-gray-700   { color: #d1e4ff !important; }
+html.dark .text-gray-600   { color: #bfdbfe !important; }
+html.dark .text-gray-500   { color: #93b8d8 !important; }
+html.dark .text-gray-400   { color: #7fa8cc !important; }
+html.dark .text-gray-300   { color: #d1e4ff !important; }
+html.dark .text-gray-200   { color: #e8f0ff !important; }
+
+/* ── White/80 opacity text (used in dark hero sections) ── */
+html.dark .text-white\/80  { color: rgba(255,255,255,0.9) !important; }
+
+/* ── Card text inside dark-mode cards ── */
+html.dark .bg-white h1,
+html.dark .bg-white h2,
+html.dark .bg-white h3,
+html.dark .bg-white h4,
+html.dark .bg-white p,
+html.dark .bg-white span:not(.text-teal):not(.text-teal-dark):not(.text-ocean) {
+  color: #e8f0ff;
+}
+
+/* ── Input fields ── */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #0e1a30 !important;
+  color: #e8f0ff !important;
+  border-color: #1a2d47 !important;
+}
+html.dark input::placeholder,
+html.dark textarea::placeholder { color: #7fa8cc !important; }
+
+/* ── Shadows ── */
+html.dark .shadow-sm,
+html.dark .shadow-md,
+html.dark .shadow-lg,
+html.dark .shadow-xl,
+html.dark .shadow-2xl {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.65) !important;
+}
