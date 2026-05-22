@@ -108,7 +108,7 @@ export const products: Product[] = [
           'Container & Ro/Ro Vessels',
           'Offshore Support & Pipelay Vessels',
         ],
-        image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&auto=format&fit=crop&q=80',
+        image: '/services/versatality.png',
       },
       {
         title: 'High Performance Engine',
@@ -119,7 +119,7 @@ export const products: Product[] = [
           'Multi-language interface support',
           'Offline operation capability',
         ],
-        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&h=400&auto=format&fit=crop&q=80',
+        image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&auto=format&fit=crop&q=80',
       },
     ],
     modules: [

@@ -7,10 +7,13 @@ import Footer from '@/components/Footer';
 import Section from '@/components/Section';
 import Button from '@/components/Button';
 import Icon from '@/components/Icon';
+import Script from 'next/script';
 import { serviceDetails } from '@/data/serviceDetails';
 import { services } from '@/data/services';
 import { products } from '@/data/products';
 import ProductTabs from '@/components/ProductTabs';
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -39,8 +42,31 @@ export default async function ServiceDetailPage({ params }: Props) {
   const heroImage = services.find((s) => s.slug === slug)?.image ?? detail.heroImage;
   const serviceProducts = products.filter((p) => p.serviceSlug === slug);
 
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: detail.title,
+    description: detail.intro.substring(0, 160),
+    provider: { '@type': 'Organization', name: 'Green Ship Technologies', url: siteUrl },
+    url: `${siteUrl}/services/${slug}`,
+    serviceType: detail.title,
+    areaServed: ['India', 'Middle East', 'Far East', 'Europe'],
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteUrl}/services` },
+      { '@type': 'ListItem', position: 3, name: detail.title, item: `${siteUrl}/services/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <Script id="service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <Script id="breadcrumb-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Navbar />
       <main>
         {/* Hero */}

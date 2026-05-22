@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import Section from '@/components/Section';
 import Icon from '@/components/Icon';
 import SuccessModal from '@/components/SuccessModal';
-import { contactInfo, companyInfo } from '@/data/company';
+import { contactInfo } from '@/data/company';
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
@@ -17,7 +17,7 @@ export default function ContactPage() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
@@ -240,20 +240,18 @@ export default function ContactPage() {
           </div>
         </Section>
 
-        {/* Map placeholder */}
-        <div className="h-64 bg-light-grey flex items-center justify-center border-t border-gray-200">
-          <div className="text-center">
-            <Icon name="MapPin" size={32} className="text-teal-dark mx-auto mb-2" />
-            <p className="text-gray-600 font-medium">CBD Belapur, Navi Mumbai, Maharashtra 400614</p>
-            <a
-              href={contactInfo.mapUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-teal-dark font-semibold text-sm hover:underline mt-1 inline-flex items-center gap-1"
-            >
-              Open in Google Maps <Icon name="ExternalLink" size={12} />
-            </a>
-          </div>
+        {/* Google Maps embed */}
+        <div className="w-full h-80 border-t border-gray-200">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.226885930284!2d73.02877267711791!3d19.009721408129863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c252d83cd9b3%3A0x49d73d4cf38966e4!2sGreen%20Ship%20Technologies!5e0!3m2!1sen!2sin!4v1779212829317!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Green Ship Technologies Location"
+          />
         </div>
       </main>
       <Footer />

@@ -13,7 +13,7 @@ export default function Footer() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
@@ -66,6 +66,7 @@ export default function Footer() {
       { href: '/about', label: 'About Us' },
       { href: '/services', label: 'Our Services' },
       { href: '/client-portfolio', label: 'Clients' },
+      { href: '/blog', label: 'Blog' },
       { href: '/contact', label: 'Contact Us' },
     ]
   };

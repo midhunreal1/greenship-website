@@ -148,6 +148,7 @@ export default function Navbar() {
   ];
   const mobileLinksEnd = [
     { href: '/client-portfolio', label: 'Client Portfolio' },
+    { href: '/blog', label: 'Blog' },
     { href: '/contact', label: 'Contact Us' },
   ];
 
@@ -198,6 +199,7 @@ export default function Navbar() {
               <DesktopNavLink href="/about" label="About Us" pathname={pathname} />
               <ServicesDropdown pathname={pathname} />
               <DesktopNavLink href="/client-portfolio" label="Client Portfolio" pathname={pathname} />
+              <DesktopNavLink href="/blog" label="Blog" pathname={pathname} />
               <DesktopNavLink href="/contact" label="Contact Us" pathname={pathname} />
               <LanguageSwitcher />
               <Link href="/contact" className="bg-linear-to-r from-teal to-teal-dark text-white px-5 py-2 rounded-md hover:shadow-lg hover:scale-105 transition-all duration-200 font-semibold text-sm whitespace-nowrap">
@@ -234,6 +236,7 @@ export default function Navbar() {
               <DesktopNavLink href="/about" label="About Us" pathname={pathname} />
               <ServicesDropdown pathname={pathname} />
               <DesktopNavLink href="/client-portfolio" label="Client Portfolio" pathname={pathname} />
+              <DesktopNavLink href="/blog" label="Blog" pathname={pathname} />
               <DesktopNavLink href="/contact" label="Contact Us" pathname={pathname} />
               <LanguageSwitcher />
               <Link href="/contact" className="bg-linear-to-r from-teal to-teal-dark text-white px-6 py-2 rounded-md hover:shadow-lg hover:scale-105 transition-all duration-200 font-semibold whitespace-nowrap">
