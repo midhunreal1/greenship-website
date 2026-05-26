@@ -33,7 +33,7 @@ export const companyInfo = {
   employees: '50+',
   clientsServed: '200+',
   projectsCompleted: '500+',
-  yearsExperience: '15+'
+  yearsExperience: '16+'
 };
 
 export const milestones: Milestone[] = [
@@ -64,8 +64,8 @@ export const milestones: Milestone[] = [
   },
   {
     year: '2024',
-    title: '15 Years of Excellence',
-    description: 'Celebrated 15 years of delivering maritime innovation and serving 200+ clients globally.'
+    title: '16 Years of Excellence',
+    description: 'Celebrated 16 years of delivering maritime innovation and serving 200+ clients globally.'
   }
 ];
 

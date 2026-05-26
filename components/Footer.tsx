@@ -13,7 +13,7 @@ export default function Footer() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleNewsletterSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
@@ -85,7 +85,7 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
                 <Image src="/logo.svg" alt="Green Ship Technologies Logo" width={40} height={40} loading="lazy" className="object-contain" />
-                <span className="text-lg font-bold text-white">Green Ship <span className="text-teal">Technologies</span></span>
+                <span className="text-lg font-bold text-white">Green Ship Technologies</span>
               </div>
               <p className="text-white mb-2 text-sm font-medium italic">&quot;Your Partner in Maritime Innovation&quot;</p>
               <p className="text-white/80 mb-4 text-sm">

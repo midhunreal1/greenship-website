@@ -127,7 +127,7 @@ export default function Home() {
                 <span className="text-teal-dark font-semibold text-sm tracking-wider uppercase">About Green Ship Technologies</span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-6 leading-tight">
-                15+ Years of Maritime Excellence
+                16+ Years of Maritime Excellence
               </h2>
               <p className="text-gray-600 leading-relaxed mb-6">
                 {companyInfo.description}

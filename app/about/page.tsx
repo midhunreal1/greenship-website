@@ -102,7 +102,7 @@ export default function AboutPage() {
               { icon: 'Star',     title: 'Master Mariners',        image: '/services/MP2.webp' },
               { icon: 'Zap',      title: 'Electrical Engineers',   image: '/services/Ultrasonic-Testing-UT.webp' },
               { icon: 'Settings', title: 'Mechanical Engineers',   image: '/services/maintainance.webp' },
-              { icon: 'Code',     title: 'Computer Engineers',     image: '/services/software.jpeg' },
+              { icon: 'Code',     title: 'Software Engineers',     image: '/services/software.jpeg' },
             ].map((role) => (
               <div key={role.title} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
                 <div className="relative h-32 overflow-hidden">

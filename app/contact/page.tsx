@@ -203,7 +203,6 @@ export default function ContactPage() {
                       <option>Renewable Energy & Oil Gas</option>
                       <option>Ship Broking & Chartering</option>
                       <option>Flag Registration Services</option>
-                      <option>NDT & Manpower Services</option>
                       <option>General Enquiry</option>
                     </select>
                   </div>

@@ -3,6 +3,7 @@ export interface ServiceSection {
   body?: string;
   items?: { title: string; description: string; image?: string }[];
   image?: string;
+  layout?: 'image-right';
 }
 
 export interface ServiceDetail {
@@ -24,7 +25,38 @@ export const serviceDetails: ServiceDetail[] = [
     heroImage: '/services/ship-1.webp',
     icon: 'Monitor',
     intro: 'Green Ship Technologies delivers cutting-edge marine software solutions — from stability calculation tools to comprehensive vessel management systems — designed to meet the rigorous demands of the modern maritime industry.',
-    sections: []
+    sections: [
+      {
+        heading: 'Marine Custom Software Development',
+        body: 'Beyond Ecoloadmaster, Green Ship Technologies develops bespoke maritime software tailored to the unique operational, compliance, and management needs of shipowners, operators, and maritime service providers.',
+        items: [
+          {
+            title: 'Fleet Management Systems',
+            description: 'End-to-end digital platforms for monitoring fleet operations, maintenance scheduling, crew management, and compliance tracking across your entire fleet.',
+          },
+          {
+            title: 'Voyage Planning & Optimization',
+            description: 'Custom tools that integrate weather routing, fuel consumption models, and port scheduling to maximize operational efficiency on every voyage.',
+          },
+          {
+            title: 'Planned Maintenance Systems (PMS)',
+            description: 'Digital PMS solutions aligned with class survey requirements, enabling scheduled maintenance tracking, spares management, and defect reporting.',
+          },
+          {
+            title: 'Document Management & Compliance',
+            description: 'Paperless document management platforms for certificates, permits, safety management system (SMS) documentation, and ISM Code compliance.',
+          },
+          {
+            title: 'Port & Cargo Operations Software',
+            description: 'Custom portals and dashboards for managing cargo manifests, berth scheduling, port disbursements, and agency coordination.',
+          },
+          {
+            title: 'API & System Integration',
+            description: 'Seamless integration with third-party maritime platforms, vessel AIS data feeds, ERP systems, and classification society portals.',
+          },
+        ],
+      },
+    ]
   },
   {
     slug: 'ship-design-engineering',
@@ -36,10 +68,11 @@ export const serviceDetails: ServiceDetail[] = [
     sections: [
       {
         heading: 'Core Design Services',
+        layout: 'image-right',
         items: [
-          { title: 'Ship Design', description: 'Leveraging specialized marine engineering software for innovative, dependable design solutions from concept to class approval.' },
-          { title: 'Ship Conversion', description: 'Meticulous planning, innovative solutions, and seamless execution to transform vessels for new operational requirements.' },
-          { title: 'Ship Modification', description: 'Comprehensive solutions to enhance design, structure, systems, and capabilities of existing vessels.' },
+          { title: 'Ship Design', description: 'Leveraging specialized marine engineering software for innovative, dependable design solutions from concept to class approval.', image: '/services/ship-design-construction.jpg' },
+          { title: 'Ship Conversion', description: 'Meticulous planning, innovative solutions, and seamless execution to transform vessels for new operational requirements.', image: '/services/ship-conversion-drydock.jpg' },
+          { title: 'Ship Modification', description: 'Comprehensive solutions to enhance design, structure, systems, and capabilities of existing vessels.', image: '/services/ship-modification-repair.jpg' },
         ]
       },
       {
@@ -65,11 +98,12 @@ export const serviceDetails: ServiceDetail[] = [
       },
       {
         heading: 'Offshore Engineering',
+        layout: 'image-right',
         items: [
-          { title: 'Mooring & Motion Analysis', description: 'Analysis for all vessel types per applicable codes with user-friendly operational reports.' },
-          { title: 'Pipe Lay & Cable Lay Analysis', description: 'Static and dynamic analysis per project design requirements with comprehensive operational reports.' },
-          { title: 'Structural Stability Analysis', description: 'FEM analysis of installations, operational parameter checks, and stability per design requirements.' },
-          { title: 'Towage & Sea Fastening', description: 'Marine transportation analysis, towing plans, sea fastening designs, and warranty survey assistance.' },
+          { title: 'Mooring & Motion Analysis', description: 'Analysis for all vessel types per applicable codes with user-friendly operational reports.', image: '/services/mooring-motion-analysis.jpg' },
+          { title: 'Pipe Lay & Cable Lay Analysis', description: 'Static and dynamic analysis per project design requirements with comprehensive operational reports.', image: '/services/pipelay-cable-analysis.jpg' },
+          { title: 'Structural Stability Analysis', description: 'FEM analysis of installations, operational parameter checks, and stability per design requirements.', image: '/services/structural-stability-analysis.jpg' },
+          { title: 'Towage & Sea Fastening', description: 'Marine transportation analysis, towing plans, sea fastening designs, and warranty survey assistance.', image: '/services/towage-sea-fastening.jpg' },
         ]
       },
     ]
@@ -85,41 +119,47 @@ export const serviceDetails: ServiceDetail[] = [
       {
         heading: 'Marine Surveys',
         items: [
-          { title: 'Pre-Purchase Survey', description: 'Thorough inspection of the vessel\'s hull, structure, machinery, equipment, and systems conducted before vessel acquisition.' },
-          { title: 'Condition Survey', description: 'Evaluates overall vessel condition, identifying defects or damages affecting safety, performance, or commercial value.' },
-          { title: 'On/Off Hire Survey', description: 'Specialized inspections documenting vessel condition at the commencement and completion of charter agreements.' },
-          { title: 'Towage Survey', description: 'Assesses vessels intended for towing and related equipment for regulatory compliance and operational readiness.' },
-          { title: 'Damage Survey', description: 'Conducted after accidents to assess damage extent, establish cause, and recommend appropriate repairs.' },
-          { title: 'Bunker Survey', description: 'Verifies fuel quantity and quality onboard vessels to protect both buyer and seller interests.' },
-          { title: 'Draft Survey', description: 'Determines vessel displacement by measuring draft changes before and after cargo operations.' },
-          { title: 'Vessel Feasibility Survey', description: 'Comprehensive assessment evaluating a vessel\'s suitability for specific operations or conversions.' },
+          { title: 'IHM Survey', description: 'Inventory of Hazardous Materials (IHM) survey for Hong Kong Convention compliance. ABS approved, with detailed onboard inventory, documentation review, and certification support.', image: '/services/class-survey.webp' },
+          { title: 'Pre-Purchase Survey', description: 'Thorough inspection of the vessel\'s hull, structure, machinery, equipment, and systems conducted before vessel acquisition.', image: '/services/prepurchase-survey.webp' },
+          { title: 'Condition Survey', description: 'Evaluates overall vessel condition, identifying defects or damages affecting safety, performance, or commercial value.', image: '/services/condotionsurvey.webp' },
+          { title: 'On/Off Hire Survey', description: 'Specialized inspections documenting vessel condition at the commencement and completion of charter agreements.', image: '/services/on-offsurvey.webp' },
+          { title: 'Towage Survey', description: 'Assesses vessels intended for towing and related equipment for regulatory compliance and operational readiness.', image: '/services/towagesurvey.webp' },
+          { title: 'Damage Survey', description: 'Conducted after accidents to assess damage extent, establish cause, and recommend appropriate repairs.', image: '/services/damagesurvey.webp' },
+          { title: 'Bunker Survey', description: 'Verifies fuel quantity and quality onboard vessels to protect both buyer and seller interests.', image: '/services/bunkersurvey.webp' },
+          { title: 'Draft Survey', description: 'Determines vessel displacement by measuring draft changes before and after cargo operations.', image: '/services/draftsurvey.webp' },
+          { title: 'Vessel Feasibility Survey', description: 'Comprehensive assessment evaluating a vessel\'s suitability for specific operations or conversions.', image: '/services/vesselfeasibilitysurvey.webp' },
         ]
       },
       {
         heading: 'Class & Statutory Surveys',
-        body: 'Essential inspections ensuring compliance with international maritime regulations including SOLAS, MARPOL, and STCW.',
+        layout: 'image-right',
+        body: 'Class and statutory surveys are essential inspections conducted on ships to ensure compliance with international maritime regulations, classification society rules, and statutory requirements imposed by flag administrations. These surveys are crucial for verifying seaworthiness, safety, and environmental compliance, while maintaining classification status and operational integrity.',
         items: [
-          { title: 'Comprehensive Assessments', description: 'Full structural and machinery surveys covering all aspects of vessel classification requirements.' },
-          { title: 'Regular Monitoring', description: 'Ongoing survey programs throughout the vessel lifecycle to maintain class status and compliance.' },
-          { title: 'Regulatory Compliance', description: 'Ensuring adherence to all applicable flag state requirements and Port State Control standards.' },
+          { title: 'Comprehensive Assessments', description: 'Our experienced surveyors conduct thorough inspections of vessel structure, machinery, systems, and safety equipment in accordance with classification society rules.', image: '/services/comprehensive-assessments.webp' },
+          { title: 'Regular Monitoring', description: 'Class surveys are carried out at scheduled intervals across the vessel lifecycle, verifying continuous compliance with classification and statutory standards.', image: '/services/regular-monitoring.webp' },
+          { title: 'Structural Integrity', description: 'We assess hull strength, stability, and seaworthiness to ensure vessels are fit for operation and capable of withstanding demanding maritime conditions.', image: '/services/structural-integrity.webp' },
+          { title: 'Regulatory Compliance', description: 'Our statutory surveys verify adherence to SOLAS, MARPOL, STCW, and other international conventions mandated by flag states.', image: '/services/regulatory-compliance.webp' },
+          { title: 'Flag State Requirements', description: 'We work closely with flag administrations to make sure your vessels meet all required flag state obligations and certification standards.', image: '/services/flag-state-requirements.webp' },
+          { title: 'Port State Control Readiness', description: 'Our survey services prepare your vessels for PSC inspections, helping minimize detention risk and operational delays.', image: '/services/port-state-control.webp' },
         ]
       },
       {
         heading: 'Flag State Inspection Services',
-        body: 'Supporting vessel compliance across multiple flag state jurisdictions:',
+        body: 'At Green Ship Technologies, we offer comprehensive flag state inspection services to ensure that vessels comply with the regulations and requirements of their respective flag administrations. Our flag state inspections verify seaworthiness, safety, and regulatory compliance, helping shipowners and operators navigate the complex maritime regulatory landscape.',
         items: [
-          { title: 'Regulatory Compliance Verification', description: 'Thorough review of all vessel certificates, safety equipment, and operational records.' },
-          { title: 'Documentation Review', description: 'Comprehensive audit of certificates, logbooks, manuals, and compliance records.' },
-          { title: 'Risk Assessment', description: 'Identifying potential compliance gaps with corrective recommendations before PSC inspections.' },
-          { title: 'Consultation & Guidance', description: 'Expert advice on compliance strategies and best practices for flag state requirements.' },
+          { title: 'Regulatory Compliance Verification', description: 'Our experienced surveyors conduct thorough inspections to verify compliance with flag state regulations, safety standards, operational procedures, crew qualifications, and vessel documentation.', image: '/services/regulatory-compliance-verification.webp' },
+          { title: 'Safety & Environmental Compliance', description: 'We assess vessels for compliance with safety and environmental regulations, including pollution prevention, emergency response preparedness, and environmental management practices.', image: '/services/Safety-and-Environmental-Compliance.webp' },
+          { title: 'Documentation Review', description: 'We meticulously review vessel documentation, certificates, records, and logs to ensure accuracy, completeness, and compliance with flag administration requirements.', image: '/services/Documentation-Review.webp' },
+          { title: 'Risk Assessment', description: 'We identify potential risks, hazards, and deficiencies during inspections and provide corrective recommendations to mitigate risks and ensure compliance.', image: '/services/Risk-Assessment.webp' },
+          { title: 'Consultation & Guidance', description: 'Our team provides expert consultation and guidance on regulatory requirements, compliance strategies, and best practices to resolve issues and implement effective solutions.', image: '/services/Consultation-and-Guidance.webp' },
         ]
       },
     ],
     flags: ['St. Kitts & Nevis', 'Belize', 'Comoros', 'Sierra Leone', 'Cook Island', 'Palau', 'Panama', 'Liberia']
   },
   {
-    slug: 'renewable-energy-services',
-    title: 'Renewable Energy Services',
+    slug: 'renewable-energy-oil-gas',
+    title: 'Renewable Energy & Oil Gas',
     heroText: 'Driving sustainability in the maritime industry through innovative renewable energy solutions.',
     heroImage: '/services/Service4.webp',
     icon: 'Zap',
@@ -135,11 +175,12 @@ export const serviceDetails: ServiceDetail[] = [
       },
       {
         heading: 'Offshore Engineering',
+        layout: 'image-right',
         body: 'Design, construction, installation, and maintenance of renewable offshore infrastructure including wind farms and tidal installations. Our solutions address harsh marine conditions, saltwater corrosion, and variable seabed conditions.',
         items: [
-          { title: 'Offshore Structure Design', description: 'Robust structural designs for offshore renewable energy installations in challenging marine environments.' },
-          { title: 'Installation Engineering', description: 'Safe and efficient installation planning and supervision for offshore renewable energy projects.' },
-          { title: 'Operations & Maintenance', description: 'Ongoing support ensuring optimal performance and longevity of offshore energy infrastructure.' },
+          { title: 'Offshore Structure Design', description: 'Robust structural designs for offshore renewable energy installations in challenging marine environments.', image: '/services/offshore.webp' },
+          { title: 'Installation Engineering', description: 'Safe and efficient installation planning and supervision for offshore renewable energy projects.', image: '/services/installation.webp' },
+          { title: 'Operations & Maintenance', description: 'Ongoing support ensuring optimal performance and longevity of offshore energy infrastructure.', image: '/services/maintainance.webp' },
         ]
       },
       {
@@ -172,11 +213,12 @@ export const serviceDetails: ServiceDetail[] = [
       },
       {
         heading: 'Chartering Services',
+        layout: 'image-right',
         items: [
-          { title: 'Voyage Chartering', description: 'Single voyage charter arrangements for cargo transportation on specific trade routes.' },
-          { title: 'Time Chartering', description: 'Fixed-period charter agreements giving charterers full operational control of the vessel.' },
-          { title: 'Bareboat Chartering', description: 'Long-term charter arrangements where the charterer assumes full responsibility for the vessel.' },
-          { title: 'Post-Fixture Management', description: 'Ongoing support and dispute resolution throughout the charter period.' },
+          { title: 'Voyage Chartering', description: 'Single voyage charter arrangements for cargo transportation on specific trade routes.', image: '/services/charter.jpg' },
+          { title: 'Time Chartering', description: 'Fixed-period charter agreements giving charterers full operational control of the vessel.', image: '/services/ship1.webp' },
+          { title: 'Bareboat Chartering', description: 'Long-term charter arrangements where the charterer assumes full responsibility for the vessel.', image: '/services/ship2.webp' },
+          { title: 'Post-Fixture Management', description: 'Ongoing support and dispute resolution throughout the charter period.', image: '/services/Market.webp' },
         ]
       },
     ]
@@ -192,55 +234,15 @@ export const serviceDetails: ServiceDetail[] = [
       {
         heading: 'Our Registration Services',
         items: [
-          { title: 'Flag Selection Assistance', description: 'Expert guidance on selecting suitable flags based on regulatory requirements, operational preferences, and commercial considerations.' },
-          { title: 'Regulatory Guidance', description: 'Expert advice on regulatory requirements, procedures, and best practices related to flag registration.' },
-          { title: 'Registration Process Management', description: 'End-to-end management of the registration process, handling all paperwork, documentation, and communications with flag state authorities.' },
-          { title: 'Document Preparation', description: 'Preparation of application forms, declarations, affidavits, and all supporting documents with meticulous attention to detail.' },
-          { title: 'Compliance Verification', description: 'Comprehensive review of vessel documentation, certificates, and records to verify compliance with flag state requirements.' },
-          { title: 'Communication & Coordination', description: 'Acting as liaison between clients and flag authorities, addressing queries and providing status updates throughout the registration process.' },
+          { title: 'Flag Selection Assistance', description: 'Expert guidance on selecting suitable flags based on regulatory requirements, operational preferences, and commercial considerations.', image: '/services/flag.jpg' },
+          { title: 'Regulatory Guidance', description: 'Expert advice on regulatory requirements, procedures, and best practices related to flag registration.', image: '/services/statutory-surveys.webp' },
+          { title: 'Registration Process Management', description: 'End-to-end management of the registration process, handling all paperwork, documentation, and communications with flag state authorities.', image: '/services/vessel1.webp' },
+          { title: 'Document Preparation', description: 'Preparation of application forms, declarations, affidavits, and all supporting documents with meticulous attention to detail.', image: '/services/Documentation-Review.webp' },
+          { title: 'Compliance Verification', description: 'Comprehensive review of vessel documentation, certificates, and records to verify compliance with flag state requirements.', image: '/services/regulatory-compliance.webp' },
+          { title: 'Communication & Coordination', description: 'Acting as liaison between clients and flag authorities, addressing queries and providing status updates throughout the registration process.', image: '/services/Consultation-and-Guidance.webp' },
         ]
       },
     ],
     flags: ['Panama', 'Liberia', 'Palau', 'St. Kitts & Nevis', 'Comoros', 'Cook Islands', 'Belize', 'Sierra Leone', 'Tanzania', 'St. Vincent & the Grenadines']
-  },
-  {
-    slug: 'non-destructive-testing-services',
-    title: 'NDT & Manpower Services',
-    heroText: 'Trusted NDT solutions and skilled maritime manpower for structural integrity and operational excellence.',
-    heroImage: '/services/Service7.webp',
-    icon: 'Users',
-    intro: 'Green Ship Technologies is your trusted partner in Non-Destructive Testing (NDT) solutions and manpower services for the maritime industry. We ensure the structural integrity, safety, and efficiency of marine assets through comprehensive NDT methods and highly skilled personnel.',
-    sections: [
-      {
-        heading: 'NDT Methods',
-        items: [
-          { title: 'Ultrasonic Testing (UT)', description: 'Utilizes high-frequency sound waves to detect internal flaws, measure thickness, and characterize materials.', image: '/services/Ultrasonic-Testing-UT.webp' },
-          { title: 'Magnetic Particle Testing (MT)', description: 'Detects surface and near-surface flaws in ferromagnetic materials by applying magnetic fields and observing particle patterns.', image: '/services/Magnetic-Particle-Testing.webp' },
-          { title: 'Eddy Current Testing (ET)', description: 'Uses electromagnetic induction to detect surface and subsurface defects and measure material conductivity.', image: '/services/Eddy.webp' },
-          { title: 'Liquid Penetrant Testing (PT)', description: 'Identifies surface-breaking defects in non-porous materials through penetrant fluids and developer chemicals.', image: '/services/Liquid-Penetrant-Testing.webp' },
-          { title: 'Visual Inspection', description: 'Direct visual examination of components and structures for surface defects, corrosion, and abnormalities.', image: '/services/Visual1.webp' },
-        ]
-      },
-      {
-        heading: 'Rope Access Services',
-        body: 'Our highly skilled Rope Access Technicians meet the unique challenges of working at height in maritime environments.',
-        items: [
-          { title: 'Inspections & Surveys', description: 'Thorough inspections of maritime structures including ship hulls, rigging, and offshore platforms using advanced techniques.', image: '/services/rope1.webp' },
-          { title: 'Maintenance & Repair', description: 'Routine maintenance to emergency repairs in challenging maritime environments — painting, welding, structural repairs.', image: '/services/maintainance.webp' },
-          { title: 'Rescue & Emergency Response', description: 'Trained in rescue and emergency response techniques to ensure the safety of all personnel working at height.', image: '/services/Rescue.webp' },
-          { title: 'Installation & Rigging', description: 'Safe installation and rigging of equipment at height, ensuring secure and properly aligned mounting for optimal performance.', image: '/services/installation.webp' },
-        ]
-      },
-      {
-        heading: 'Manpower Services',
-        body: 'Comprehensive maritime manpower solutions with a deep understanding of maritime operations worldwide.',
-        items: [
-          { title: 'Skilled Personnel Provisioning', description: 'Providing deckhands, engineers, navigators, marine technicians, and more — meticulously selected to meet the highest competency standards.', image: '/services/MP1.webp' },
-          { title: 'Specialized Expertise', description: 'Sourcing personnel with specialized expertise to support vessel repairs, maintenance, or new construction projects globally.', image: '/services/MP2.webp' },
-          { title: 'Temporary Crewing Solutions', description: 'Flexible temporary crew members ready to join at short notice, ensuring continuity of operations without disruptions.', image: '/services/smallP.webp' },
-          { title: 'Global Reach, Local Support', description: 'Deploying personnel onshore or offshore wherever and whenever needed, with local expertise in key maritime hubs.', image: '/vessel-top-view.jpg' },
-        ]
-      },
-    ]
-  },
+  }
 ];

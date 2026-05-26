@@ -16,16 +16,16 @@ import ProductTabs from '@/components/ProductTabs';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ service: string }>;
 }
 
 export async function generateStaticParams() {
-  return serviceDetails.map((s) => ({ slug: s.slug }));
+  return serviceDetails.map((s) => ({ service: s.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const detail = serviceDetails.find((s) => s.slug === slug);
+  const { service } = await params;
+  const detail = serviceDetails.find((s) => s.slug === service);
   if (!detail) return {};
   return {
     title: detail.title,
@@ -34,13 +34,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
-  const { slug } = await params;
-  const detail = serviceDetails.find((s) => s.slug === slug);
+  const { service } = await params;
+  const detail = serviceDetails.find((s) => s.slug === service);
   if (!detail) notFound();
 
-  const otherServices = services.filter((s) => s.slug !== slug);
-  const heroImage = services.find((s) => s.slug === slug)?.image ?? detail.heroImage;
-  const serviceProducts = products.filter((p) => p.serviceSlug === slug);
+  const otherServices = services.filter((s) => s.slug !== service);
+  const heroImage = services.find((s) => s.slug === service)?.image ?? detail.heroImage;
+  const serviceProducts = products.filter((p) => p.serviceSlug === service);
 
   const serviceSchema = {
     '@context': 'https://schema.org',
@@ -48,7 +48,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     name: detail.title,
     description: detail.intro.substring(0, 160),
     provider: { '@type': 'Organization', name: 'Green Ship Technologies', url: siteUrl },
-    url: `${siteUrl}/services/${slug}`,
+    url: `${siteUrl}/services/${service}`,
     serviceType: detail.title,
     areaServed: ['India', 'Middle East', 'Far East', 'Europe'],
   };
@@ -59,7 +59,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
       { '@type': 'ListItem', position: 2, name: 'Services', item: `${siteUrl}/services` },
-      { '@type': 'ListItem', position: 3, name: detail.title, item: `${siteUrl}/services/${slug}` },
+      { '@type': 'ListItem', position: 3, name: detail.title, item: `${siteUrl}/services/${service}` },
     ],
   };
 
@@ -105,7 +105,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                     fill
                     priority
                     quality={90}
-                  className="object-cover"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
                 </div>
@@ -138,8 +138,34 @@ export default async function ServiceDetailPage({ params }: Props) {
 
             {section.items && section.items.length > 0 && (
               <>
-                {/* Items with images → card grid */}
-                {section.items.some((i) => i.image) ? (
+                {section.layout === 'image-right' ? (
+                  /* Horizontal cards: text left, image right */
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    {section.items.map((item, ii) => (
+                      <div key={ii} className="flex items-stretch bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 min-h-[140px]">
+                        <div className="flex-1 p-5 flex flex-col justify-center">
+                          {item.title && (
+                            <h3 className="font-bold text-navy mb-2 text-sm">{item.title}</h3>
+                          )}
+                          <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                        </div>
+                        {item.image && (
+                          <div className="relative w-36 sm:w-44 shrink-0">
+                            <Image
+                              src={item.image}
+                              alt={item.title || section.heading}
+                              fill
+                              loading="lazy"
+                              quality={90}
+                              className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-linear-to-l from-transparent to-navy/10" />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ) : section.items.some((i) => i.image) ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {section.items.map((item, ii) => (
                       <div key={ii} className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
@@ -151,9 +177,9 @@ export default async function ServiceDetailPage({ params }: Props) {
                               fill
                               loading="lazy"
                               quality={90}
-                  className="object-cover"
+                              className="object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
+                            <div className="absolute inset-0 bg-linear-to-t from-navy/30 to-transparent" />
                           </div>
                         )}
                         <div className="p-5">
@@ -166,7 +192,6 @@ export default async function ServiceDetailPage({ params }: Props) {
                     ))}
                   </div>
                 ) : (
-                  /* Items without images → checklist */
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
                     {section.items.map((item, ii) => (
                       <div key={ii} className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
@@ -186,7 +211,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           </Section>
         ))}
 
-        {/* Flag states (for survey & flag registration pages) */}
+        {/* Flag states */}
         {detail.flags && detail.flags.length > 0 && (
           <Section background="white">
             <div className="text-center mb-8">
@@ -208,11 +233,11 @@ export default async function ServiceDetailPage({ params }: Props) {
                     {code ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
-                        src={`https://flagcdn.com/48x36/${code}.png`}
-                        width={48}
-                        height={36}
+                        src={`https://flagcdn.com/72x54/${code}.png`}
+                        width={72}
+                        height={54}
                         alt={`${flag} flag`}
-                        className="mx-auto mb-2 rounded shadow-sm"
+                        className="mx-auto mb-2 rounded shadow-sm w-20 h-16"
                       />
                     ) : (
                       <div className="w-12 h-9 bg-light-grey rounded mx-auto mb-2 flex items-center justify-center">
@@ -227,7 +252,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           </Section>
         )}
 
-        {/* Other Services — dark bg */}
+        {/* Other Services */}
         <section className="bg-[#0a1e3c] py-14 sm:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">

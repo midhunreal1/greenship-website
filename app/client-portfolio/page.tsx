@@ -76,7 +76,7 @@ export default function ClientPortfolioPage() {
           <div className="text-center mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-4">Our Extensive Client Base</h2>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-              Over 15 years, Green Ship Technologies has built lasting partnerships with maritime organizations across the globe
+              Over 16 years, Green Ship Technologies has built lasting partnerships with maritime organizations across the globe
             </p>
           </div>
 
