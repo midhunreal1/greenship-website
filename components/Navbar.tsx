@@ -34,6 +34,7 @@ export default function Navbar() {
   const [hoveredService, setHoveredService] = useState<Service>(services[0]);
   const [hoveredSubItem, setHoveredSubItem] = useState<ServiceSubItem | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mobileServicesRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 100);
@@ -229,7 +230,14 @@ export default function Navbar() {
 
       {/* Services accordion */}
       <button
-        onClick={() => setMobileServicesOpen((p) => !p)}
+        ref={mobileServicesRef}
+        onClick={() => {
+          const next = !mobileServicesOpen;
+          setMobileServicesOpen(next);
+          if (next) {
+            setTimeout(() => mobileServicesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+          }
+        }}
         className={`w-full flex items-center justify-between py-2.5 px-3 rounded-lg text-sm font-medium transition-colors text-gray-900 hover:bg-teal/5 ${
           isServicesActive ? 'border-l-4 border-teal bg-teal/5' : ''
         }`}
@@ -308,7 +316,7 @@ export default function Navbar() {
     <>
       {/* ── Sticky navbar (slides in after scroll) ── */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${isScrolled ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="relative max-w-8xl mx-auto bg-white/95 backdrop-blur-md shadow-lg border border-gray-200 px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-8xl mx-auto bg-white backdrop-blur-md shadow-lg border border-gray-200 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-2">
               <Image src="/logo.svg" alt="Green Ship Technologies" width={35} height={35} priority className="object-contain" />
@@ -322,7 +330,7 @@ export default function Navbar() {
           </div>
 
           {/* Sticky mobile dropdown */}
-          <div className={`min-[1114px]:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-lg px-4 sm:px-6 py-4 z-50 transition-all duration-300 ease-out ${
+          <div className={`min-[1114px]:hidden rounded-lg mt-3 absolute top-full left-0 right-0 bg-white backdrop-blur-md border-t border-gray-200 shadow-lg px-4 sm:px-6 py-4 z-50 transition-all duration-300 ease-out max-h-[80vh] overflow-y-auto ${
             isMenuOpen && isScrolled ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
           }`}>
             {mobileMenuContent}
@@ -335,7 +343,7 @@ export default function Navbar() {
 
       {/* ── Original top navbar ── */}
       <nav className="relative top-0 z-40 px-2 bg-[#0a1e3c] pt-4">
-        <div className="relative max-w-8xl mx-auto bg-white/95 backdrop-blur-md shadow-lg rounded-2xl border border-gray-200 px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-8xl mx-auto bg-white backdrop-blur-md shadow-lg rounded-2xl border border-gray-200 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center space-x-3">
               <Image src="/logo.svg" alt="Green Ship Technologies" width={45} height={45} priority className="object-contain" />
@@ -349,7 +357,7 @@ export default function Navbar() {
           </div>
 
           {/* Top mobile dropdown */}
-          <div className={`min-[1114px]:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md rounded-b-2xl border border-t-0 border-gray-200 shadow-lg px-4 sm:px-6 py-4 z-50 transition-all duration-300 ease-out ${
+          <div className={`min-[1114px]:hidden absolute top-full left-0 right-0 bg-white backdrop-blur-md rounded-2xl border border-t-0 mt-2 border-gray-200 shadow-lg px-4 sm:px-6 py-4 z-50 transition-all duration-300 ease-out max-h-[80vh] overflow-y-auto ${
             isMenuOpen && !isScrolled ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
           }`}>
             {mobileMenuContent}
