@@ -21,10 +21,12 @@ export default function Footer() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_KEY',
+          access_key: '007d5799-9171-4c15-b1b6-0f55f18a9040',
           email,
           subject: 'New Newsletter Subscription - Green Ship Technologies',
+          message: `New newsletter subscription from: ${email}`,
           from_name: 'GST Newsletter',
+          reply_to: email,
         }),
       });
       const data = await response.json();

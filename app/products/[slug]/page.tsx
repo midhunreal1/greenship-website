@@ -2,11 +2,14 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Icon from '@/components/Icon';
 import { products } from '@/data/products';
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -31,8 +34,30 @@ export default async function ProductDetailPage({ params }: Props) {
   const product = products.find((p) => p.slug === slug);
   if (!product) notFound();
 
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: product!.name,
+    description: product!.description,
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Windows, Web',
+    url: `${siteUrl}/products/${slug}`,
+    provider: { '@type': 'Organization', name: 'Green Ship Technologies', url: siteUrl },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+      { '@type': 'ListItem', position: 2, name: product!.name, item: `${siteUrl}/products/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <Script id="product-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
+      <Script id="breadcrumb-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Navbar />
       <main>
         {/* Hero */}

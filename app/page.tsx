@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -13,6 +14,15 @@ import { services } from '@/data/services';
 import { industries } from '@/data/industries';
 import { testimonials } from '@/data/testimonials';
 import { companyInfo, contactInfo } from '@/data/company';
+
+export const metadata: Metadata = {
+  title: 'Green Ship Technologies — Maritime Services & Marine Software',
+  description: 'Green Ship Technologies delivers world-class maritime services — ship design & engineering, marine software, survey & certification, flag registration, offshore engineering, and ship broking.',
+  openGraph: {
+    title: 'Green Ship Technologies — Maritime Services & Marine Software',
+    description: 'Expert maritime solutions including Ecoloadmaster loadicator software, ship design, IHM surveys, flag registration, and offshore engineering.',
+  },
+};
 
 export default function Home() {
   return (

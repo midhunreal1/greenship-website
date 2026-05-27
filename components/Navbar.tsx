@@ -71,116 +71,65 @@ export default function Navbar() {
       <div className="px-6 lg:px-8 py-5">
         <div className="flex gap-8">
 
-          {/* Left – 2-col service list */}
+          {/* Left – 3-col service list */}
           <div className="flex-1 min-w-0">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 pb-2 border-b border-gray-100">
               Our Services
             </p>
-            <div className="grid grid-cols-2 gap-x-6">
-              {/* Column 1: services 0–2 */}
-              <div className="space-y-2 ">
-                {services.slice(0, 3).map((service) => (
-                  <div key={service.id} className='p-2 shadow-sm shadow-gray-400 rounded-lg'>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      onMouseEnter={() => { setHoveredService(service); setHoveredSubItem(null); }}
-                      onClick={() => setServicesOpen(false)}
-                      className={`flex items-center gap-2 py-1.5 px-2 rounded-lg group transition-colors ${
-                        hoveredService.id === service.id && !hoveredSubItem
-                          ? 'bg-teal/5'
-                          : 'hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className={`w-6 h-6 rounded-md flex items-center justify-center shrink-0 transition-all duration-150 ${
-                        hoveredService.id === service.id && !hoveredSubItem
-                          ? 'bg-teal text-white'
-                          : 'bg-navy text-white group-hover:bg-teal'
-                      }`}>
-                        <Icon name={service.icon} size={12} className="text-white" />
-                      </div>
-                      <span className={`font-semibold text-sm transition-colors duration-150 ${
-                        hoveredService.id === service.id && !hoveredSubItem
-                          ? 'text-teal-dark'
-                          : 'text-navy group-hover:text-teal-dark'
-                      }`}>
-                        {service.title}
-                      </span>
-                    </Link>
-                    {service.subItems && (
-                      <ul className="ml-8 mt-0.5 space-y-0.5">
-                        {service.subItems.map((sub) => (
-                          <li key={sub.slug}>
-                            <Link
-                              href={sub.href ?? `/services/${service.slug}/${sub.slug}`}
-                              onMouseEnter={() => { setHoveredService(service); setHoveredSubItem(sub); }}
-                              onClick={() => setServicesOpen(false)}
-                              className={`block text-xs py-0.5 px-1.5 rounded transition-colors ${
-                                hoveredSubItem?.slug === sub.slug && hoveredService.id === service.id
-                                  ? 'text-teal-dark bg-teal/5 font-medium'
-                                  : ' hover:text-teal-dark hover:bg-teal/5'
-                              }`}
-                            >
-                              {sub.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ))}
-              </div>
-              {/* Column 2: services 3–5 */}
-              <div className="space-y-2">
-                {services.slice(3).map((service) => (
-                  <div key={service.id} className="p-2 shadow-sm shadow-gray-400 rounded-lg">
-                    <Link
-                      href={`/services/${service.slug}`}
-                      onMouseEnter={() => { setHoveredService(service); setHoveredSubItem(null); }}
-                      onClick={() => setServicesOpen(false)}
-                      className={`flex items-center gap-2 py-1.5 px-2 rounded-lg group transition-colors ${
-                        hoveredService.id === service.id && !hoveredSubItem
-                          ? 'bg-teal/5'
-                          : 'hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className={`w-6 h-6 rounded-md flex items-center justify-center shrink-0 transition-all duration-150 ${
-                        hoveredService.id === service.id && !hoveredSubItem
-                          ? 'bg-teal text-white'
-                          : 'bg-navy text-white group-hover:bg-teal'
-                      }`}>
-                        <Icon name={service.icon} size={12} className="text-white" />
-                      </div>
-                      <span className={`font-semibold text-sm transition-colors duration-150 ${
-                        hoveredService.id === service.id && !hoveredSubItem
-                          ? 'text-teal-dark'
-                          : 'text-navy group-hover:text-teal-dark'
-                      }`}>
-                        {service.title}
-                      </span>
-                    </Link>
-                    {service.subItems && (
-                      <ul className="ml-8 mt-0.5 space-y-0.5">
-                        {service.subItems.map((sub) => (
-                          <li key={sub.slug}>
-                            <Link
-                              href={sub.href ?? `/services/${service.slug}/${sub.slug}`}
-                              onMouseEnter={() => { setHoveredService(service); setHoveredSubItem(sub); }}
-                              onClick={() => setServicesOpen(false)}
-                              className={`block text-xs py-0.5 px-1.5 rounded transition-colors ${
-                                hoveredSubItem?.slug === sub.slug && hoveredService.id === service.id
-                                  ? 'text-teal-dark bg-teal/5 font-medium'
-                                  : ' hover:text-teal-dark hover:bg-teal/5'
-                              }`}
-                            >
-                              {sub.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ))}
-              </div>
+            <div className="grid grid-cols-3 gap-x-4">
+              {[services.slice(0, 2), services.slice(2, 4), services.slice(4)].map((col, colIdx) => (
+                <div key={colIdx} className="space-y-2">
+                  {col.map((service) => (
+                    <div key={service.id} className="p-2 shadow-sm shadow-gray-400 rounded-lg">
+                      <Link
+                        href={`/services/${service.slug}`}
+                        onMouseEnter={() => { setHoveredService(service); setHoveredSubItem(null); }}
+                        onClick={() => setServicesOpen(false)}
+                        className={`flex items-center gap-2 py-1.5 px-2 rounded-lg group transition-colors ${
+                          hoveredService.id === service.id && !hoveredSubItem
+                            ? 'bg-teal/5'
+                            : 'hover:bg-gray-50'
+                        }`}
+                      >
+                        <div className={`w-6 h-6 rounded-md flex items-center justify-center shrink-0 transition-all duration-150 ${
+                          hoveredService.id === service.id && !hoveredSubItem
+                            ? 'bg-teal text-white'
+                            : 'bg-navy text-white group-hover:bg-teal'
+                        }`}>
+                          <Icon name={service.icon} size={12} className="text-white" />
+                        </div>
+                        <span className={`font-semibold text-sm transition-colors duration-150 ${
+                          hoveredService.id === service.id && !hoveredSubItem
+                            ? 'text-teal-dark'
+                            : 'text-navy group-hover:text-teal-dark'
+                        }`}>
+                          {service.title}
+                        </span>
+                      </Link>
+                      {service.subItems && (
+                        <ul className="ml-8 mt-0.5 space-y-0.5">
+                          {service.subItems.map((sub) => (
+                            <li key={sub.slug}>
+                              <Link
+                                href={sub.href ?? `/services/${service.slug}/${sub.slug}`}
+                                onMouseEnter={() => { setHoveredService(service); setHoveredSubItem(sub); }}
+                                onClick={() => setServicesOpen(false)}
+                                className={`block text-xs py-0.5 px-1.5 rounded transition-colors ${
+                                  hoveredSubItem?.slug === sub.slug && hoveredService.id === service.id
+                                    ? 'text-teal-dark bg-teal/5 font-medium'
+                                    : 'hover:text-teal-dark hover:bg-teal/5'
+                                }`}
+                              >
+                                {sub.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
             <div className="mt-4 pt-3 border-t border-gray-100">
               <Link

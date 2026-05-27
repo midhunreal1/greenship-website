@@ -1,65 +1,53 @@
-'use client';
-
-import { useState } from 'react';
+import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Section from '@/components/Section';
 import Icon from '@/components/Icon';
-import SuccessModal from '@/components/SuccessModal';
+import ContactForm from '@/components/ContactForm';
+import Script from 'next/script';
 import { contactInfo } from '@/data/company';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+  description: 'Get in touch with Green Ship Technologies for marine software, ship design, survey & certification, flag registration, and offshore engineering enquiries.',
+  openGraph: {
+    title: 'Contact Green Ship Technologies',
+    description: 'Reach our maritime experts for consultations, project discussions, and service enquiries.',
+    url: `${siteUrl}/contact`,
+  },
+};
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Green Ship Technologies',
+  url: `${siteUrl}/contact`,
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'Green Ship Technologies',
+    url: siteUrl,
+    telephone: contactInfo.phone,
+    email: contactInfo.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: contactInfo.address,
+    },
+  },
+};
+
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_KEY',
-          ...form,
-          subject: `New Enquiry from ${form.name} - Green Ship Technologies`,
-          from_name: 'GST Website Contact',
-        }),
-      });
-      const data = await response.json();
-      if (data.success) {
-        setShowSuccess(true);
-        setForm({ name: '', email: '', phone: '', service: '', message: '' });
-      } else {
-        alert('Something went wrong. Please try again or email us directly.');
-      }
-    } catch {
-      alert('Failed to send. Please email us at contact@greenshiptech.com');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <>
+      <Script id="contact-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
       <Navbar />
-      <SuccessModal
-        isOpen={showSuccess}
-        onClose={() => setShowSuccess(false)}
-        title="Message Sent!"
-        message="Thank you for contacting Green Ship Technologies. Our team will get back to you within 24 hours."
-      />
       <main>
         {/* Page Header */}
         <section className="relative bg-[#0a1e3c] text-white py-16 sm:py-20 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-10 left-20 w-72 h-72 bg-teal rounded-full filter blur-xl"></div>
-            <div className="absolute bottom-10 right-20 w-96 h-96 bg-ocean rounded-full filter blur-3xl"></div>
+            <div className="absolute top-10 left-20 w-72 h-72 bg-teal rounded-full filter blur-xl" />
+            <div className="absolute bottom-10 right-20 w-96 h-96 bg-ocean rounded-full filter blur-3xl" />
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
@@ -83,7 +71,7 @@ export default function ContactPage() {
 
               <div className="space-y-5">
                 <div className="flex items-start gap-4 p-4 bg-light-grey rounded-xl">
-                  <div className="w-11 h-11 bg-gradient-to-br from-teal to-ocean rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 bg-linear-to-br from-teal to-ocean rounded-xl flex items-center justify-center shrink-0">
                     <Icon name="MapPin" size={20} className="text-white" />
                   </div>
                   <div>
@@ -101,7 +89,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 bg-light-grey rounded-xl">
-                  <div className="w-11 h-11 bg-gradient-to-br from-teal to-ocean rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 bg-linear-to-br from-teal to-ocean rounded-xl flex items-center justify-center shrink-0">
                     <Icon name="Phone" size={20} className="text-white" />
                   </div>
                   <div>
@@ -114,12 +102,12 @@ export default function ContactPage() {
                         {contactInfo.phone2}
                       </a>
                     )}
-                    <p className="text-white/80 text-xs mt-1">WhatsApp enabled</p>
+                    <p className="text-gray-400 text-xs mt-1">WhatsApp enabled</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4 p-4 bg-light-grey rounded-xl">
-                  <div className="w-11 h-11 bg-gradient-to-br from-teal to-ocean rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 bg-linear-to-br from-teal to-ocean rounded-xl flex items-center justify-center shrink-0">
                     <Icon name="Mail" size={20} className="text-white" />
                   </div>
                   <div>
@@ -131,7 +119,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-4 p-4 bg-light-grey rounded-xl">
-                  <div className="w-11 h-11 bg-gradient-to-br from-teal to-ocean rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 bg-linear-to-br from-teal to-ocean rounded-xl flex items-center justify-center shrink-0">
                     <Icon name="Clock" size={20} className="text-white" />
                   </div>
                   <div>
@@ -142,99 +130,9 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Contact Form */}
+            {/* Contact Form — client component */}
             <div>
-              <div className="bg-light-grey rounded-2xl p-6 sm:p-8">
-                <h3 className="text-xl font-bold text-navy mb-6">Send Us a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-semibold text-navy mb-1">Full Name *</label>
-                    <input
-                      id="name"
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Capt. John Smith"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal text-sm"
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-navy mb-1">Email *</label>
-                      <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        required
-                        placeholder="you@company.com"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal text-sm"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-navy mb-1">Phone</label>
-                      <input
-                        id="phone"
-                        type="tel"
-                        name="phone"
-                        value={form.phone}
-                        onChange={handleChange}
-                        placeholder="+91 XXXXX XXXXX"
-                        className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal text-sm"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="service" className="block text-sm font-semibold text-navy mb-1">Service of Interest</label>
-                    <select
-                      id="service"
-                      name="service"
-                      value={form.service}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal text-sm text-gray-700"
-                    >
-                      <option value="">Select a service...</option>
-                      <option>Marine Software Services</option>
-                      <option>Ship Design & Engineering</option>
-                      <option>Survey & Certification</option>
-                      <option>Renewable Energy & Oil Gas</option>
-                      <option>Ship Broking & Chartering</option>
-                      <option>Flag Registration Services</option>
-                      <option>General Enquiry</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-semibold text-navy mb-1">Message *</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      placeholder="Describe your requirements or project details..."
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-teal text-sm resize-none"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-teal to-teal-dark text-white px-6 py-3.5 rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-200 font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  >
-                    {isSubmitting ? (
-                      <>Sending...</>
-                    ) : (
-                      <>
-                        Send Message
-                        <Icon name="Send" size={16} />
-                      </>
-                    )}
-                  </button>
-                </form>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </Section>
