@@ -71,7 +71,7 @@ export default function Home() {
                     { value: companyInfo.yearsExperience, label: 'Years Experience' },
                     { value: companyInfo.clientsServed, label: 'Clients Served' },
                     { value: companyInfo.projectsCompleted, label: 'Projects Done' },
-                    { value: '7+', label: 'Services' },
+                    { value: '15+', label: 'Services' },
                   ].map((stat) => (
                     <div key={stat.label} className="text-center">
                       <div className="text-2xl lg:text-3xl font-bold text-teal">{stat.value}</div>

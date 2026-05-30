@@ -4,6 +4,7 @@ import Script from "next/script";
 import StructuredData from "@/components/StructuredData";
 import RouteTransitionLoader from "@/components/RouteTransitionLoader";
 import SocialFloat from "@/components/SocialFloat";
+import ChatWidget from "@/components/ChatWidget";
 import ThemeProvider from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import GoogleTranslate from "@/components/GoogleTranslate";
@@ -143,6 +144,7 @@ export default function RootLayout({
           <RouteTransitionLoader />
           {children}
           <SocialFloat />
+          <ChatWidget />
           <ThemeToggle />
         </ThemeProvider>
       </body>

@@ -7,7 +7,11 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Icon from '@/components/Icon';
 import Button from '@/components/Button';
+import Section from '@/components/Section';
+import ProductTabs from '@/components/ProductTabs';
 import { services } from '@/data/services';
+import { subItemDetails } from '@/data/serviceDetails';
+import { products } from '@/data/products';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
 
@@ -28,12 +32,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const parentService = services.find((s) => s.slug === serviceSlug);
   const subItem = parentService?.subItems?.find((sub) => sub.slug === subitemSlug);
   if (!parentService || !subItem) return {};
+  const detail = subItemDetails.find((d) => d.slug === subitemSlug && (!d.parentSlug || d.parentSlug === serviceSlug));
   return {
     title: `${subItem.title} | ${parentService.title} | Green Ship Technologies`,
-    description: subItem.description ?? `${subItem.title} services by Green Ship Technologies — expert maritime solutions for ${parentService.title.toLowerCase()}.`,
+    description: detail?.intro.substring(0, 160) ?? subItem.description ?? `${subItem.title} services by Green Ship Technologies.`,
     openGraph: {
       title: `${subItem.title} | Green Ship Technologies`,
-      description: subItem.description,
+      description: detail?.intro.substring(0, 160) ?? subItem.description,
       images: parentService.image ? [parentService.image] : [],
     },
   };
@@ -45,6 +50,8 @@ export default async function SubItemPage({ params }: Props) {
   const subItem = parentService?.subItems?.find((sub) => sub.slug === subitemSlug);
   if (!parentService || !subItem) notFound();
 
+  const detail = subItemDetails.find((d) => d.slug === subitemSlug && (!d.parentSlug || d.parentSlug === serviceSlug));
+  const product = products.find((p) => p.slug === subitemSlug);
   const relatedSubItems = parentService.subItems?.filter((sub) => sub.slug !== subitemSlug) ?? [];
 
   const serviceSchema = {
@@ -84,7 +91,6 @@ export default async function SubItemPage({ params }: Props) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                {/* Breadcrumb */}
                 <nav className="flex items-center gap-2 text-teal text-sm font-medium mb-6 flex-wrap">
                   <Link href="/services" className="hover:opacity-80 transition-opacity flex items-center gap-1">
                     <Icon name="ArrowLeft" size={14} />
@@ -116,10 +122,10 @@ export default async function SubItemPage({ params }: Props) {
               </div>
 
               <div className="hidden lg:block">
-                {parentService.image && (
+                {(detail?.heroImage ?? parentService.image) && (
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl h-95">
                     <Image
-                      src={parentService.image}
+                      src={detail?.heroImage ?? parentService.image!}
                       alt={subItem.title}
                       fill
                       priority
@@ -139,63 +145,131 @@ export default async function SubItemPage({ params }: Props) {
           </div>
         </section>
 
-        {/* About this service */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-4">
-              About {subItem.title}
-            </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              {subItem.description ?? `Green Ship Technologies provides professional ${subItem.title.toLowerCase()} services as part of our comprehensive ${parentService.title.toLowerCase()} offering. Our team brings deep industry expertise to every engagement, ensuring the highest standards of quality and compliance.`}
+        {/* Intro */}
+        <Section background="white">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-lg text-gray-600 leading-relaxed">
+              {detail?.intro ?? subItem.description ?? `Green Ship Technologies provides professional ${subItem.title.toLowerCase()} services as part of our comprehensive ${parentService.title.toLowerCase()} offering.`}
             </p>
           </div>
-        </section>
+        </Section>
 
-        {/* Why choose us */}
-        <section className="py-14 bg-light-grey">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-3">Why Choose Green Ship Technologies?</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Our expertise in {subItem.title.toLowerCase()} is backed by years of hands-on maritime experience and a commitment to excellence.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {[
-                { icon: 'Award', title: 'Industry Expertise', desc: 'Years of specialized experience in maritime services, delivering results that meet international standards.' },
-                { icon: 'Shield', title: 'Compliance Assured', desc: 'Full adherence to SOLAS, MARPOL, and all applicable international maritime conventions and flag regulations.' },
-                { icon: 'Globe', title: 'Global Reach', desc: 'Operating across India, the Middle East, Far East, and Europe with a network of qualified maritime professionals.' },
-                { icon: 'Clock', title: 'Timely Delivery', desc: 'Efficient project management ensuring your operations are not delayed with on-time, accurate deliverables.' },
-                { icon: 'Users', title: 'Dedicated Team', desc: 'A team of certified surveyors, naval architects, and maritime engineers dedicated to your service needs.' },
-                { icon: 'HeadphonesIcon', title: '24/7 Support', desc: 'Round-the-clock availability for urgent maritime requirements, inspections, and consultations.' },
-              ].map((item) => (
-                <div key={item.title} className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-200">
-                  <div className="w-10 h-10 bg-teal/10 rounded-lg flex items-center justify-center mb-3">
-                    <Icon name={item.icon} size={20} className="text-teal-dark" />
+        {/* Product tabs if a product matches this sub-item */}
+        {product && (
+          <Section background="white">
+            <ProductTabs products={[product]} />
+          </Section>
+        )}
+
+        {/* Detailed sections if available */}
+        {detail ? (
+          detail.sections.map((section, si) => (
+            <Section key={si} background={si % 2 === 0 ? 'grey' : 'white'}>
+              <div className="text-center mb-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mb-3">{section.heading}</h2>
+                {section.body && <p className="text-gray-600 max-w-3xl mx-auto">{section.body}</p>}
+              </div>
+
+              {section.items && section.items.length > 0 && (
+                <>
+                  {section.layout === 'image-right' ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      {section.items.map((item, ii) => (
+                        <div key={ii} className="flex items-stretch bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 min-h-[140px]">
+                          <div className="flex-1 p-5 flex flex-col justify-center">
+                            {item.title && <h3 className="font-bold text-navy mb-2 text-sm">{item.title}</h3>}
+                            <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                          </div>
+                          {item.image && (
+                            <div className="relative w-36 sm:w-44 shrink-0">
+                              <Image src={item.image} alt={item.title || section.heading} fill loading="lazy" quality={90} className="object-cover" />
+                              <div className="absolute inset-0 bg-linear-to-l from-transparent to-navy/10" />
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  ) : section.items.some((i) => i.image) ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {section.items.map((item, ii) => (
+                        <div key={ii} className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                          {item.image && (
+                            <div className="relative h-44 overflow-hidden">
+                              <Image src={item.image} alt={item.title || section.heading} fill loading="lazy" quality={90} className="object-cover" />
+                              <div className="absolute inset-0 bg-linear-to-t from-navy/30 to-transparent" />
+                            </div>
+                          )}
+                          <div className="p-5">
+                            {item.title && <h3 className="font-bold text-navy mb-2">{item.title}</h3>}
+                            <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                      {section.items.map((item, ii) => (
+                        <div key={ii} className="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+                          <div className="w-8 h-8 bg-teal/10 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                            <Icon name="CheckCircle" size={18} className="text-teal-dark" />
+                          </div>
+                          <div>
+                            {item.title && <p className="font-semibold text-navy text-sm mb-1">{item.title}</p>}
+                            <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </Section>
+          ))
+        ) : (
+          /* Fallback: Why choose us */
+          <section className="py-14 bg-light-grey">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-10">
+                <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-3">Why Choose Green Ship Technologies?</h2>
+                <p className="text-gray-600 max-w-2xl mx-auto">
+                  Our expertise in {subItem.title.toLowerCase()} is backed by years of hands-on maritime experience and a commitment to excellence.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {[
+                  { icon: 'Award', title: 'Industry Expertise', desc: 'Years of specialized experience in maritime services, delivering results that meet international standards.' },
+                  { icon: 'Shield', title: 'Compliance Assured', desc: 'Full adherence to SOLAS, MARPOL, and all applicable international maritime conventions and flag regulations.' },
+                  { icon: 'Globe', title: 'Global Reach', desc: 'Operating across India, the Middle East, Far East, and Europe with a network of qualified maritime professionals.' },
+                  { icon: 'Clock', title: 'Timely Delivery', desc: 'Efficient project management ensuring your operations are not delayed with on-time, accurate deliverables.' },
+                  { icon: 'Users', title: 'Dedicated Team', desc: 'A team of certified surveyors, naval architects, and maritime engineers dedicated to your service needs.' },
+                  { icon: 'HeadphonesIcon', title: '24/7 Support', desc: 'Round-the-clock availability for urgent maritime requirements, inspections, and consultations.' },
+                ].map((item) => (
+                  <div key={item.title} className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-200">
+                    <div className="w-10 h-10 bg-teal/10 rounded-lg flex items-center justify-center mb-3">
+                      <Icon name={item.icon} size={20} className="text-teal-dark" />
+                    </div>
+                    <h3 className="font-bold text-navy mb-1.5 text-sm">{item.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
                   </div>
-                  <h3 className="font-bold text-navy mb-1.5 text-sm">{item.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Other sub-services under same parent */}
         {relatedSubItems.length > 0 && (
           <section className="py-14 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-8">
-                <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-2">
-                  More under {parentService.title}
-                </h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-2">More under {parentService.title}</h2>
                 <p className="text-gray-600">Explore our other {parentService.title.toLowerCase()} offerings</p>
               </div>
               <div className="flex flex-wrap justify-center gap-4">
                 {relatedSubItems.map((sub) => (
                   <Link
                     key={sub.slug}
-                    href={`/services/${serviceSlug}/${sub.slug}`}
+                    href={sub.href ?? `/services/${serviceSlug}/${sub.slug}`}
                     className="group flex items-center gap-3 bg-white border border-gray-200 hover:border-teal/40 rounded-xl px-5 py-3.5 shadow-sm hover:shadow-md transition-all duration-200"
                   >
                     <div className="w-7 h-7 rounded-lg bg-teal/10 flex items-center justify-center group-hover:bg-teal/20 transition-colors">
@@ -207,10 +281,7 @@ export default async function SubItemPage({ params }: Props) {
                 ))}
               </div>
               <div className="text-center mt-6">
-                <Link
-                  href={`/services/${serviceSlug}`}
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-teal-dark hover:underline"
-                >
+                <Link href={`/services/${serviceSlug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-teal-dark hover:underline">
                   View full {parentService.title} page →
                 </Link>
               </div>
@@ -224,9 +295,7 @@ export default async function SubItemPage({ params }: Props) {
             <div className="absolute top-10 right-10 w-64 h-64 bg-teal rounded-full filter blur-3xl" />
           </div>
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              Ready to Get Started?
-            </h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
             <p className="text-white/80 mb-8">
               Contact our maritime experts to discuss your {subItem.title.toLowerCase()} requirements.
             </p>

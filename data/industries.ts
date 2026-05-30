@@ -6,55 +6,123 @@ export const industries: Industry[] = [
     title: 'Commercial Shipping',
     description: 'End-to-end services for bulk carriers, tankers, container ships, and general cargo vessels across global trade routes.',
     icon: 'Ship',
-    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&h=300&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&h=300&auto=format&fit=crop&q=80',
+    slug: 'commercial-shipping',
+    subItems: [
+      { title: 'Ecoloadmaster (Loadicator)', href: '/services/marine-software-services/ecoloadmaster' },
+      { title: 'Marine Custom Software', href: '/services/marine-software-services/marine-custom-software-development' },
+      { title: 'IHM Surveys', href: '/services/survey-certification/ihm-surveys' },
+      { title: 'Marine Surveys', href: '/services/survey-certification/marine-surveys' },
+      { title: 'Class & Statutory Surveys', href: '/services/survey-certification/class-statutory-surveys' },
+      { title: 'Flag State Inspections', href: '/services/survey-certification/flag-state-inspections' },
+      { title: 'Sale & Purchase Brokering', href: '/services/ship-broking-chartering/sale-purchase-brokering' },
+      { title: 'Chartering Brokers', href: '/services/ship-broking-chartering/chartering-brokers' },
+      { title: 'Flag Registration', href: '/services/flag-registration-services' },
+    ],
   },
   {
     id: '2',
     title: 'Offshore & Oil Gas',
     description: 'Engineering and technical services for offshore platforms, FPSOs, drilling rigs, and subsea infrastructure.',
     icon: 'Flame',
-    image: '/vessel-top-view.jpg'
+    image: '/vessel-top-view.jpg',
+    slug: 'offshore-oil-gas',
+    subItems: [
+      { title: 'Ship Design', href: '/services/ship-design-engineering/ship-design' },
+      { title: 'Retrofit & Conversion', href: '/services/ship-design-engineering/retrofit-conversion' },
+      { title: 'Offshore Engineering', href: '/services/ship-design-engineering/offshore-engineering' },
+      { title: 'Offshore Engineering (Renewable)', href: '/services/renewable-energy-oil-gas/offshore-engineering' },
+      { title: 'IHM Surveys', href: '/services/survey-certification/ihm-surveys' },
+      { title: 'Marine Surveys', href: '/services/survey-certification/marine-surveys' },
+      { title: 'Flag State Inspections', href: '/services/survey-certification/flag-state-inspections' },
+    ],
   },
   {
     id: '3',
     title: 'Naval & Defence',
     description: 'Specialized engineering and survey support for naval vessels, coast guard ships, and defence maritime assets.',
     icon: 'Shield',
-    image: '/services/AHTS.webp'
+    image: '/services/AHTS.webp',
+    slug: 'naval-defence',
+    subItems: [
+      { title: 'Ship Design', href: '/services/ship-design-engineering/ship-design' },
+      { title: 'Retrofit & Conversion', href: '/services/ship-design-engineering/retrofit-conversion' },
+      { title: 'Class & Statutory Surveys', href: '/services/survey-certification/class-statutory-surveys' },
+      { title: 'Flag State Inspections', href: '/services/survey-certification/flag-state-inspections' },
+      { title: 'Flag Registration', href: '/services/flag-registration-services' },
+    ],
   },
   {
     id: '4',
     title: 'Renewable Energy',
     description: 'Supporting the global energy transition with floating solar, offshore wind, and wave energy marine engineering.',
     icon: 'Zap',
-    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=300&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=300&auto=format&fit=crop&q=80',
+    slug: 'renewable-energy',
+    subItems: [
+      { title: 'Floating Solar System Design', href: '/services/renewable-energy-oil-gas/floating-solar-system-design' },
+      { title: 'Offshore Engineering', href: '/services/renewable-energy-oil-gas/offshore-engineering' },
+      { title: 'Wind Farm Engineering Support', href: '/services/renewable-energy-oil-gas/wind-farm-engineering-support' },
+      { title: 'Ship Design', href: '/services/ship-design-engineering/ship-design' },
+    ],
   },
   {
     id: '5',
     title: 'Shipbuilding & Repair',
     description: 'Design support, quality assurance, and technical supervision for shipyards engaged in new builds and vessel repairs.',
     icon: 'Wrench',
-    image: '/services/ship-drydock-3.webp'
+    image: '/services/ship-drydock-3.webp',
+    slug: 'shipbuilding-repair',
+    subItems: [
+      { title: 'Ship Design', href: '/services/ship-design-engineering/ship-design' },
+      { title: 'Retrofit & Conversion', href: '/services/ship-design-engineering/retrofit-conversion' },
+      { title: 'Ecoloadmaster (Loadicator)', href: '/services/marine-software-services/ecoloadmaster' },
+      { title: 'Marine Custom Software', href: '/services/marine-software-services/marine-custom-software-development' },
+      { title: 'IHM Surveys', href: '/services/survey-certification/ihm-surveys' },
+      { title: 'Class & Statutory Surveys', href: '/services/survey-certification/class-statutory-surveys' },
+    ],
   },
   {
     id: '6',
     title: 'Port & Terminal',
     description: 'Marine consulting and software solutions for port authorities, terminal operators, and port service companies.',
     icon: 'Anchor',
-    image: '/services/ship3.webp'
+    image: '/services/ship3.webp',
+    slug: 'port-terminal',
+    subItems: [
+      { title: 'Ecoloadmaster (Loadicator)', href: '/services/marine-software-services/ecoloadmaster' },
+      { title: 'Marine Custom Software', href: '/services/marine-software-services/marine-custom-software-development' },
+      { title: 'Marine Surveys', href: '/services/survey-certification/marine-surveys' },
+      { title: 'Flag State Inspections', href: '/services/survey-certification/flag-state-inspections' },
+    ],
   },
   {
     id: '7',
     title: 'Maritime Finance & Insurance',
     description: 'Vessel valuations, condition surveys, and technical due diligence for ship finance, P&I clubs, and marine insurers.',
     icon: 'BarChart2',
-    image: '/services/Service3.webp'
+    image: '/services/Service3.webp',
+    slug: 'maritime-finance-insurance',
+    subItems: [
+      { title: 'Marine Surveys', href: '/services/survey-certification/marine-surveys' },
+      { title: 'IHM Surveys', href: '/services/survey-certification/ihm-surveys' },
+      { title: 'Sale & Purchase Brokering', href: '/services/ship-broking-chartering/sale-purchase-brokering' },
+      { title: 'Chartering Brokers', href: '/services/ship-broking-chartering/chartering-brokers' },
+    ],
   },
   {
     id: '8',
     title: 'Yacht & Leisure Marine',
     description: 'Design, certification, and management services for superyachts, recreational vessels, and marina operators.',
     icon: 'Sailboat',
-    image: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&h=300&auto=format&fit=crop&q=80'
-  }
+    image: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?w=600&h=300&auto=format&fit=crop&q=80',
+    slug: 'yacht-leisure-marine',
+    subItems: [
+      { title: 'Ship Design', href: '/services/ship-design-engineering/ship-design' },
+      { title: 'Marine Surveys', href: '/services/survey-certification/marine-surveys' },
+      { title: 'Class & Statutory Surveys', href: '/services/survey-certification/class-statutory-surveys' },
+      { title: 'Sale & Purchase Brokering', href: '/services/ship-broking-chartering/sale-purchase-brokering' },
+      { title: 'Flag Registration', href: '/services/flag-registration-services' },
+    ],
+  },
 ];

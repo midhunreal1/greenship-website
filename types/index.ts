@@ -14,6 +14,8 @@ export interface Industry {
   description: string;
   icon: string;
   image?: string;
+  slug: string;
+  subItems?: { title: string; href: string }[];
 }
 
 export interface Testimonial {

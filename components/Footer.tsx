@@ -61,7 +61,6 @@ export default function Footer() {
     expertise: [
       { href: '/services', label: 'Renewable Energy' },
       { href: '/services', label: 'Ship Broking & Chartering' },
-      { href: '/services', label: 'NDT & Manpower' },
       { href: '/client-portfolio', label: 'Client Portfolio' },
     ],
     company: [

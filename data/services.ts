@@ -32,19 +32,19 @@ export const services: Service[] = [
     slug: 'ship-design-engineering',
     subItems: [
       {
-        title: 'Conversion & Modification',
-        slug: 'conversion-modification',
-        description: 'End-to-end engineering for vessel conversions, supporting design, classification approval, and shipyard supervision.',
+        title: 'Ship Design',
+        slug: 'ship-design',
+        description: 'Comprehensive ship design services — new builds, conversions, and modifications — delivered by experienced naval architects using specialized marine engineering software.',
       },
       {
-        title: 'New Build Design',
-        slug: 'new-build-design',
-        description: 'Complete new vessel design from concept through detailed engineering, covering all vessel types and sizes.',
+        title: 'Retrofit & Conversion',
+        slug: 'retrofit-conversion',
+        description: 'Engineering for BWTS and scrubber installation on existing vessels — vessel inspections, 3D laser scanning, detailed design drawings, class approval, and installation assistance.',
       },
       {
-        title: 'Retrofit Engineering',
-        slug: 'retrofit-engineering',
-        description: 'Integration engineering for modern systems such as BWTS, scrubbers, and LNG fuel systems on existing vessels.',
+        title: 'Offshore Engineering',
+        slug: 'offshore-engineering',
+        description: 'Specialized offshore engineering covering MODU services, mooring and motion analysis, pipe/cable lay analysis, structural stability, and towage and sea fastening.',
       },
     ],
   },
@@ -60,17 +60,17 @@ export const services: Service[] = [
       {
         title: 'IHM Surveys',
         slug: 'ihm-surveys',
-        description: 'Inventory of Hazardous Materials (IHM) surveys for Hong Kong Convention compliance.  ABS approved, with detailed onboard inventory, documentation review, and full certification support.',
+        description: 'IRS approved and ABS approved Inventory of Hazardous Materials (IHM) surveys for Hong Kong Convention compliance, with detailed onboard inventory, documentation review, and full certification support.',
+      },
+      {
+        title: 'Marine Surveys',
+        slug: 'marine-surveys',
+        description: 'Comprehensive marine survey services — pre-purchase, condition, on/off hire, towage, damage, bunker, draft, and vessel feasibility surveys tailored to the diverse needs of shipowners and operators.',
       },
       {
         title: 'Class & Statutory Surveys',
         slug: 'class-statutory-surveys',
         description: 'Scheduled class and statutory surveys ensuring continuous compliance with SOLAS, MARPOL, and flag requirements.',
-      },
-      {
-        title: 'Pre-purchase Surveys',
-        slug: 'pre-purchase-surveys',
-        description: 'Independent hull, machinery, and documentation inspections to support informed vessel purchase decisions.',
       },
       {
         title: 'Flag State Inspections',
