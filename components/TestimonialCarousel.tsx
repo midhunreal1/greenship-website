@@ -29,14 +29,18 @@ export default function TestimonialCarousel({
 
   useEffect(() => {
     if (!responsive) return;
+    let timer: ReturnType<typeof setTimeout>;
     const handleResize = () => {
-      if (window.innerWidth < 768) setTestimonialsToShow(1);
-      else if (window.innerWidth < 1024) setTestimonialsToShow(2);
-      else setTestimonialsToShow(3);
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (window.innerWidth < 768) setTestimonialsToShow(1);
+        else if (window.innerWidth < 1024) setTestimonialsToShow(2);
+        else setTestimonialsToShow(3);
+      }, 150);
     };
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => { window.removeEventListener('resize', handleResize); clearTimeout(timer); };
   }, [responsive]);
 
   const handlePrev = () => setCurrentIndex((prev) => prev === 0 ? Math.max(0, displayed.length - testimonialsToShow) : prev - 1);

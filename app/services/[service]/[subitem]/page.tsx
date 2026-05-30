@@ -15,6 +15,61 @@ import { products } from '@/data/products';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
 
+const subitemSeoMeta: Record<string, { title: string; description: string }> = {
+  'ecoloadmaster': {
+    title: 'Ecoloadmaster Loadicator Software | Vessel Stability, Trim & Load Monitoring',
+    description: 'Ecoloadmaster — advanced loadicator software for real-time vessel stability calculations, load monitoring, trim optimization, and stress analysis. Trusted by commercial shipping fleets and offshore vessels worldwide.',
+  },
+  'marine-custom-software-development': {
+    title: 'Marine Custom Software Development | Fleet Management, PMS & Compliance Systems',
+    description: 'Bespoke maritime software development — fleet management systems, voyage planning & optimization tools, planned maintenance systems (PMS), document management & API integration for shipowners and operators.',
+  },
+  'ship-design': {
+    title: 'Ship Design Services | New Builds, Conversions & Modifications | Naval Architecture',
+    description: 'Professional ship design services by experienced naval architects — new vessel builds, ship conversions & modifications for offshore, commercial, and defence vessels. Specialized marine engineering software used throughout.',
+  },
+  'retrofit-conversion': {
+    title: 'Retrofit & Conversion Engineering | BWTS & Scrubber Installation | Class Approval',
+    description: 'Ship retrofit & conversion engineering — BWTS installation (BWM Convention D-2 compliance), scrubber/EGCS installation, vessel feasibility inspections, 3D laser scanning, class approval drawings & installation assistance.',
+  },
+  'offshore-engineering': {
+    title: 'Offshore Engineering | MODU Services, Mooring Analysis & Structural Stability',
+    description: 'Comprehensive offshore engineering — MODU & self-elevating platform services, mooring & motion analysis, pipe/cable lay analysis, installation & modification studies, structural stability analysis, and towage & sea fastening.',
+  },
+  'floating-solar-system-design': {
+    title: 'Floating Solar System Design | Offshore PV Engineering | Marine Renewable Energy',
+    description: 'Custom floating solar PV system design for water bodies — site assessment, floatation & anchoring engineering, panel orientation optimization, and environmental impact assessment for lakes, reservoirs & offshore areas.',
+  },
+  'wind-farm-engineering-support': {
+    title: 'Wind Farm Engineering Support | Offshore & Onshore Wind Energy Engineering',
+    description: 'Full-scope wind farm engineering — site assessment & selection, turbine & layout optimization, foundation design, electrical system & grid connection design, and long-term monitoring & maintenance planning.',
+  },
+  'ihm-surveys': {
+    title: 'IHM Survey Services | Hong Kong Convention Compliance | IRS & ABS Approved',
+    description: 'IRS and ABS approved Inventory of Hazardous Materials (IHM) survey services for Hong Kong Convention compliance — onboard inventory compilation, documentation review, risk assessment & full IHM certification support.',
+  },
+  'marine-surveys': {
+    title: 'Marine Survey Services | Pre-Purchase, Condition, Bunker, Draft & Damage Surveys',
+    description: 'Comprehensive marine survey services — pre-purchase surveys, condition surveys, on/off hire surveys, towage surveys, damage surveys, bunker quantity & quality surveys, draft surveys & vessel feasibility surveys.',
+  },
+  'class-statutory-surveys': {
+    title: 'Class & Statutory Surveys | SOLAS, MARPOL & Flag State Compliance | Green Ship Technologies',
+    description: 'Class and statutory surveys by qualified surveyors — structural integrity inspections, comprehensive SOLAS & MARPOL compliance verification, flag state requirements, and port state control readiness assessments.',
+  },
+  'flag-state-inspections': {
+    title: 'Flag State Inspection Services | Vessel Regulatory Compliance | Green Ship Technologies',
+    description: 'Comprehensive flag state inspection services — regulatory compliance verification, safety & environmental compliance assessment, vessel documentation review, risk identification & expert maritime consultation.',
+  },
+  'sale-purchase-brokering': {
+    title: 'Ship Sale & Purchase Brokering | Vessel S&P Transactions | Green Ship Technologies',
+    description: 'Expert ship sale & purchase brokerage — comprehensive market analysis & vessel valuation, negotiation support, and end-to-end transaction management for buyers and sellers across global maritime markets.',
+  },
+  'chartering-brokers': {
+    title: 'Ship Chartering Brokers | Voyage, Time & Bareboat Charter | Green Ship Technologies',
+    description: 'Professional ship chartering services — voyage charter, time charter & bareboat charter arrangements with post-fixture management, freight market intelligence, charter party drafting & claims support.',
+  },
+};
+
 interface Props {
   params: Promise<{ service: string; subitem: string }>;
 }
@@ -33,13 +88,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const subItem = parentService?.subItems?.find((sub) => sub.slug === subitemSlug);
   if (!parentService || !subItem) return {};
   const detail = subItemDetails.find((d) => d.slug === subitemSlug && (!d.parentSlug || d.parentSlug === serviceSlug));
+  const seo = subitemSeoMeta[subitemSlug];
+  const title = seo?.title ?? `${subItem.title} | ${parentService.title} | Green Ship Technologies`;
+  const description = seo?.description ?? detail?.intro.substring(0, 160) ?? subItem.description ?? `${subItem.title} services by Green Ship Technologies.`;
   return {
-    title: `${subItem.title} | ${parentService.title} | Green Ship Technologies`,
-    description: detail?.intro.substring(0, 160) ?? subItem.description ?? `${subItem.title} services by Green Ship Technologies.`,
+    title,
+    description,
     openGraph: {
-      title: `${subItem.title} | Green Ship Technologies`,
-      description: detail?.intro.substring(0, 160) ?? subItem.description,
+      title,
+      description,
+      url: `${siteUrl}/services/${serviceSlug}/${subitemSlug}`,
       images: parentService.image ? [parentService.image] : [],
+    },
+    alternates: {
+      canonical: `/services/${serviceSlug}/${subitemSlug}`,
     },
   };
 }

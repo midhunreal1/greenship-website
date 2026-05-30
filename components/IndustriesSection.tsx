@@ -51,10 +51,14 @@ export default function IndustriesSection({
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsSmallScreen(window.innerWidth < 1024);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    let timer: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => setIsSmallScreen(window.innerWidth < 1024), 150);
+    };
+    setIsSmallScreen(window.innerWidth < 1024);
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => { window.removeEventListener('resize', handleResize); clearTimeout(timer); };
   }, []);
 
   const handlePrev = () => setCurrentIndex((prev) => (prev === 0 ? industries.length - 1 : prev - 1));

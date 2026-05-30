@@ -15,6 +15,33 @@ import ProductTabs from '@/components/ProductTabs';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
 
+const serviceSeoMeta: Record<string, { title: string; description: string }> = {
+  'marine-software-services': {
+    title: 'Marine Software Services | Ecoloadmaster Stability Software & Custom Solutions',
+    description: 'Advanced marine software by Green Ship Technologies — Ecoloadmaster loadicator for vessel stability, trim & load monitoring, plus bespoke maritime software for fleet management, PMS, voyage planning & compliance.',
+  },
+  'ship-design-engineering': {
+    title: 'Ship Design & Engineering | Naval Architecture, BWTS & Scrubber Retrofit | Green Ship Technologies',
+    description: 'Expert ship design & engineering services — new builds, conversions, BWTS installation (BWM Convention D-2), scrubber/EGCS retrofit, offshore structural engineering. Experienced naval architects based in Navi Mumbai, India.',
+  },
+  'survey-certification': {
+    title: 'Marine Survey & Certification | IHM, Class, Statutory & Flag State Surveys | Green Ship Technologies',
+    description: 'Professional marine survey services — IHM surveys (IRS & ABS approved, Hong Kong Convention), class & statutory surveys (SOLAS/MARPOL), pre-purchase, condition, damage, bunker & draft surveys, and flag state inspections.',
+  },
+  'renewable-energy-oil-gas': {
+    title: 'Renewable Energy & Offshore Engineering | Floating Solar, Wind Farm & Oil Gas | Green Ship Technologies',
+    description: 'Offshore and marine renewable energy engineering — floating solar PV system design, offshore wind farm engineering support, oil & gas infrastructure engineering. Driving maritime sustainability from India.',
+  },
+  'ship-broking-chartering': {
+    title: 'Ship Broking & Chartering | Vessel Sale & Purchase, Voyage & Time Charter | Green Ship Technologies',
+    description: 'Professional ship brokerage services — vessel sale & purchase transactions, market analysis & valuation, voyage charter, time charter, bareboat charter & post-fixture management. International maritime brokers.',
+  },
+  'flag-registration-services': {
+    title: 'Ship Flag Registration Services | Panama, Liberia, Palau, St. Kitts & More | Green Ship Technologies',
+    description: 'Streamlined vessel flag registration under leading open registries — Panama, Liberia, Palau, St. Kitts & Nevis, Comoros, Cook Islands, Belize, Sierra Leone & Tanzania. Expert flag registration services from India.',
+  },
+};
+
 interface Props {
   params: Promise<{ service: string }>;
 }
@@ -27,9 +54,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { service } = await params;
   const detail = serviceDetails.find((s) => s.slug === service);
   if (!detail) return {};
+  const seo = serviceSeoMeta[service];
+  const title = seo?.title ?? detail.title;
+  const description = seo?.description ?? detail.intro.substring(0, 160);
   return {
-    title: detail.title,
-    description: detail.intro.substring(0, 160),
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}/services/${service}`,
+    },
+    alternates: {
+      canonical: `/services/${service}`,
+    },
   };
 }
 
@@ -231,12 +269,12 @@ export default async function ServiceDetailPage({ params }: Props) {
                 return (
                   <div key={flag} className="bg-white border border-gray-100 rounded-xl p-4 text-center shadow-sm hover:shadow-md hover:border-teal/30 transition-all duration-300 hover:-translate-y-0.5">
                     {code ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
+                      <Image
                         src={`https://flagcdn.com/72x54/${code}.png`}
                         width={72}
                         height={54}
                         alt={`${flag} flag`}
+                        loading="lazy"
                         className="mx-auto mb-2 rounded shadow-sm w-20 h-16"
                       />
                     ) : (

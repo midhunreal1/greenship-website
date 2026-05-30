@@ -8,8 +8,15 @@ import Icon from '@/components/Icon';
 import { companyInfo, contactInfo, milestones } from '@/data/company';
 
 export const metadata: Metadata = {
-  title: 'About Us',
-  description: 'Learn about Green Ship Technologies — established in 2009, we are a leading marine, offshore & industrial service provider based in Navi Mumbai, India.',
+  title: 'About Green Ship Technologies | Maritime Experts Since 2009 | Navi Mumbai',
+  description: 'Green Ship Technologies — established 2009, leading marine, offshore & industrial service provider in Navi Mumbai, India. 15+ years of maritime expertise, 200+ clients, 500+ projects across India, Middle East, Far East & Europe.',
+  openGraph: {
+    title: 'About Green Ship Technologies | Maritime Experts Since 2009',
+    description: 'Founded in 2009, Green Ship Technologies is a trusted name in maritime services — ship design, Ecoloadmaster software, IHM surveys, flag registration & offshore engineering from Navi Mumbai, India.',
+  },
+  alternates: {
+    canonical: '/about',
+  },
 };
 
 export default function AboutPage() {

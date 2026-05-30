@@ -5,8 +5,9 @@ import Section from '@/components/Section';
 import { companyInfo, contactInfo } from '@/data/company';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy',
-  description: 'Privacy Policy of Green Ship Technologies.',
+  title: 'Privacy Policy | Green Ship Technologies',
+  description: 'Read the privacy policy of Green Ship Technologies — how we collect, use, and protect personal information submitted through our maritime services website.',
+  robots: { index: false },
 };
 
 export default function PrivacyPolicyPage() {

@@ -8,8 +8,15 @@ import Icon from '@/components/Icon';
 import { services } from '@/data/services';
 
 export const metadata: Metadata = {
-  title: 'Our Services',
-  description: 'Explore Green Ship Technologies\' comprehensive maritime services including marine software, ship design, survey & certification, flag registration, renewable energy, and NDT services.',
+  title: 'Maritime Services | Ship Design, Marine Software, Surveys & More | Green Ship Technologies',
+  description: 'Comprehensive maritime services by Green Ship Technologies: Ecoloadmaster stability software, ship design & naval architecture, IHM & class surveys, flag registration (Panama/Liberia/Palau), offshore engineering, floating solar & ship broking.',
+  openGraph: {
+    title: 'Maritime Services | Green Ship Technologies | Navi Mumbai, India',
+    description: 'Expert maritime solutions — marine software, ship design, vessel surveys, flag registration, offshore engineering, renewable energy & ship broking. Trusted by 200+ clients since 2009.',
+  },
+  alternates: {
+    canonical: '/services',
+  },
 };
 
 export default function ServicesPage() {

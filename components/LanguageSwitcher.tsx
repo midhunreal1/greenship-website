@@ -40,7 +40,7 @@ export default function LanguageSwitcher() {
         aria-expanded={open}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`https://flagcdn.com/20x15/${active.country}.png`} width={20} height={15} alt={active.name} className="rounded-sm flex-shrink-0" />
+        <img src={`https://flagcdn.com/20x15/${active.country}.png`} width={20} height={15} alt={active.name} loading="lazy" className="rounded-sm flex-shrink-0" />
         <span className="hidden sm:inline">{active.code.split('-')[0].toUpperCase()}</span>
         <svg className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
@@ -65,7 +65,7 @@ export default function LanguageSwitcher() {
             }`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`https://flagcdn.com/20x15/${lang.country}.png`} width={20} height={15} alt={lang.name} className="rounded-sm flex-shrink-0" />
+            <img src={`https://flagcdn.com/20x15/${lang.country}.png`} width={20} height={15} alt={lang.name} loading="lazy" className="rounded-sm flex-shrink-0" />
             <span>{lang.name}</span>
             {current === lang.code && (
               <svg className="ml-auto w-3.5 h-3.5 text-teal flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">

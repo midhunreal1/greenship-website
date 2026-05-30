@@ -10,12 +10,15 @@ import { contactInfo } from '@/data/company';
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
-  description: 'Get in touch with Green Ship Technologies for marine software, ship design, survey & certification, flag registration, and offshore engineering enquiries.',
+  title: 'Contact Us | Green Ship Technologies | Maritime Services Enquiry',
+  description: 'Contact Green Ship Technologies in Navi Mumbai for maritime service enquiries — ship design, Ecoloadmaster software, IHM & class surveys, flag registration (Panama/Liberia), offshore engineering & ship broking. Get a quote today.',
   openGraph: {
-    title: 'Contact Green Ship Technologies',
-    description: 'Reach our maritime experts for consultations, project discussions, and service enquiries.',
+    title: 'Contact Green Ship Technologies | Navi Mumbai, India',
+    description: 'Get in touch with our maritime experts for project consultations, service enquiries & quotes. Specialists in ship design, marine software, IHM surveys, flag registration & offshore engineering.',
     url: `${siteUrl}/contact`,
+  },
+  alternates: {
+    canonical: '/contact',
   },
 };
 

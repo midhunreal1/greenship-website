@@ -5,8 +5,9 @@ import Section from '@/components/Section';
 import { companyInfo, contactInfo } from '@/data/company';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service',
-  description: 'Terms of Service for Green Ship Technologies.',
+  title: 'Terms of Service | Green Ship Technologies',
+  description: 'Terms and conditions governing use of the Green Ship Technologies website and maritime services platform.',
+  robots: { index: false },
 };
 
 export default function TermsOfServicePage() {

@@ -16,11 +16,14 @@ import { testimonials } from '@/data/testimonials';
 import { companyInfo, contactInfo } from '@/data/company';
 
 export const metadata: Metadata = {
-  title: 'Green Ship Technologies — Maritime Services & Marine Software',
-  description: 'Green Ship Technologies delivers world-class maritime services — ship design & engineering, marine software, survey & certification, flag registration, offshore engineering, and ship broking.',
+  title: 'Green Ship Technologies | Maritime Services & Marine Software | India',
+  description: 'Green Ship Technologies — maritime service provider since 2009. Ecoloadmaster stability software, ship design & naval architecture, IHM & class surveys, flag registration (Panama, Liberia, Palau), offshore engineering & ship broking. 200+ clients worldwide.',
   openGraph: {
-    title: 'Green Ship Technologies — Maritime Services & Marine Software',
-    description: 'Expert maritime solutions including Ecoloadmaster loadicator software, ship design, IHM surveys, flag registration, and offshore engineering.',
+    title: 'Green Ship Technologies | Maritime Services & Marine Software | India',
+    description: 'Expert maritime services from Navi Mumbai — Ecoloadmaster loadicator software, naval architecture, IHM surveys, flag registration (Panama/Liberia), offshore engineering & ship broking. 15+ years, 200+ clients.',
+  },
+  alternates: {
+    canonical: '/',
   },
 };
 
@@ -261,12 +264,12 @@ export default function Home() {
               { name: 'Belize',           code: 'bz' },
             ].map((flag) => (
               <div key={flag.name} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow hover:-translate-y-1 duration-300">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={`https://flagcdn.com/48x36/${flag.code}.png`}
                   width={48}
                   height={36}
                   alt={`${flag.name} flag`}
+                  loading="lazy"
                   className="mx-auto mb-2 rounded shadow-sm"
                 />
                 <p className="text-xs font-semibold text-navy">{flag.name}</p>

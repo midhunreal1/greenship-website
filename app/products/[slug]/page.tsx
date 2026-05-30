@@ -23,9 +23,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = products.find((p) => p.slug === slug);
   if (!product) return {};
+  const title = `${product.name} – ${product.tagline}`;
   return {
-    title: `${product.name} – ${product.tagline}`,
+    title,
     description: product.description,
+    openGraph: {
+      title,
+      description: product.description,
+      url: `${siteUrl}/products/${slug}`,
+    },
+    alternates: {
+      canonical: `/products/${slug}`,
+    },
   };
 }
 

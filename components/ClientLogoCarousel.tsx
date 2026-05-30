@@ -33,7 +33,7 @@ export default function ClientLogoCarousel() {
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 z-10 pointer-events-none bg-linear-to-l from-light-grey to-transparent" />
 
         <div
-          className="flex gap-5 w-max"
+          className="marquee-track flex gap-5 w-max"
           style={{
             animation: 'marquee 40s linear infinite',
           }}
@@ -61,7 +61,7 @@ export default function ClientLogoCarousel() {
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
           }
-          div:hover {
+          .marquee-track:hover {
             animation-play-state: paused;
           }
         `}</style>

@@ -1,14 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useTransition } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 
 export default function RouteTransitionLoader() {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
+  const [, startTransition] = useTransition();
   const prevPathRef = useRef(pathname);
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const startTransitionRef = useRef(startTransition);
+  startTransitionRef.current = startTransition;
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -19,7 +22,7 @@ export default function RouteTransitionLoader() {
       const targetPath = href.split('?')[0].split('#')[0];
       if (targetPath === pathname) return;
       if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
-      setIsVisible(true);
+      startTransitionRef.current(() => setIsVisible(true));
     };
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);

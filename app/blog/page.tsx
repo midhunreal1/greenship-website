@@ -7,8 +7,15 @@ import Section from '@/components/Section';
 import { blogPosts } from '@/data/blog';
 
 export const metadata: Metadata = {
-  title: 'Blog & Insights',
-  description: 'Expert maritime insights on vessel stability software, flag registration, ship design, NDT inspection, and offshore renewable energy from Green Ship Technologies.',
+  title: 'Maritime Blog & Technical Insights | Green Ship Technologies',
+  description: 'Expert maritime articles from Green Ship Technologies — vessel stability software, IHM surveys, BWTS & scrubber installation, flag registration (Panama/Liberia), ship design, offshore engineering & renewable energy.',
+  openGraph: {
+    title: 'Maritime Blog & Technical Insights | Green Ship Technologies',
+    description: 'Technical insights and industry news from our naval architects, marine engineers & surveyors. Topics: marine software, ship design, IHM surveys, flag registration & offshore renewable energy.',
+  },
+  alternates: {
+    canonical: '/blog',
+  },
 };
 
 const categoryColors: Record<string, string> = {

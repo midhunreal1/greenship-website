@@ -25,12 +25,12 @@ export default function HeroVideo() {
 
   return (
     <div className="relative rounded-3xl overflow-hidden shadow-2xl h-130">
-      {/* Video — loops infinitely */}
+      {/* Video — only loads/plays when user clicks play */}
       <video
         ref={videoRef}
         muted
         playsInline
-        autoPlay
+        preload="none"
         loop
         onCanPlay={handleCanPlay}
         className="absolute inset-0 w-full h-full object-cover"
@@ -50,6 +50,7 @@ export default function HeroVideo() {
           fill
           priority
           quality={90}
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover rounded-3xl"
         />
         <div className="absolute inset-0 bg-navy/40 rounded-3xl" />

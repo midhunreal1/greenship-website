@@ -45,8 +45,17 @@ export default function Navbar() {
   const mobileIndustriesRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 100);
-    window.addEventListener('scroll', onScroll);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 100);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
@@ -158,6 +167,7 @@ export default function Navbar() {
                   src={hoveredIndustry.image}
                   alt={hoveredIndustry.title}
                   fill
+                  loading="lazy"
                   className="object-cover"
                   unoptimized
                 />
@@ -272,6 +282,7 @@ export default function Navbar() {
                   src={previewImage}
                   alt={previewTitle}
                   fill
+                  loading="lazy"
                   className="object-cover"
                   unoptimized
                 />

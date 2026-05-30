@@ -7,8 +7,15 @@ import Button from '@/components/Button';
 import Icon from '@/components/Icon';
 
 export const metadata: Metadata = {
-  title: 'Client Portfolio',
-  description: 'Green Ship Technologies has served 200+ maritime clients across India, Middle East, Far East, and Europe. View our extensive client portfolio.',
+  title: 'Client Portfolio | 200+ Maritime Clients | Green Ship Technologies',
+  description: 'Green Ship Technologies has served 200+ maritime clients — shipowners, shipyards, offshore operators & maritime finance companies — across India, Middle East, Far East & Europe since 2009. 500+ projects completed.',
+  openGraph: {
+    title: 'Client Portfolio | Green Ship Technologies',
+    description: '200+ clients, 500+ projects across 4 continents. Trusted maritime service provider since 2009 — serving commercial shipping, offshore, naval & renewable energy sectors.',
+  },
+  alternates: {
+    canonical: '/client-portfolio',
+  },
 };
 
 const stats = [

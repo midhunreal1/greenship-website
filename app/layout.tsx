@@ -29,26 +29,51 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Green Ship Technologies – Marine, Offshore & Industrial Services",
+    default: "Green Ship Technologies – Maritime Services | Navi Mumbai, India",
     template: "%s | Green Ship Technologies"
   },
-  description: "Green Ship Technologies is a leading marine, offshore & industrial service provider. We offer marine software, ship design, survey & certification, renewable energy, ship broking, flag registration, and NDT & manpower services.",
+  description: "Green Ship Technologies — trusted maritime service provider since 2009. Expert in ship design, Ecoloadmaster stability software, IHM & class surveys, flag registration (Panama, Liberia, Palau), offshore engineering, floating solar & ship broking. 200+ clients across India, Middle East, Far East & Europe.",
   keywords: [
-    "marine services",
-    "offshore engineering",
+    // Software
+    "vessel stability software",
+    "loadicator software",
+    "Ecoloadmaster",
+    "marine software development",
+    "fleet management software maritime",
+    // Ship design
     "ship design",
     "naval architecture",
-    "marine software",
-    "vessel management",
-    "stability software",
-    "ship survey",
+    "ship conversion engineering",
+    "BWTS installation engineering",
+    "scrubber installation engineering",
+    "ship modification design",
+    // Surveys
+    "IHM survey",
+    "Hong Kong Convention IHM",
+    "pre-purchase vessel survey",
+    "marine condition survey",
+    "class and statutory surveys",
+    "flag state inspection",
+    "SOLAS MARPOL compliance",
+    // Flag registration
     "flag registration",
-    "NDT services",
+    "Panama flag registration",
+    "Liberia flag registration",
+    "open registry ship registration",
+    // Broking
     "ship broking",
+    "vessel sale and purchase",
+    "ship chartering services",
+    // Offshore & renewable
+    "offshore engineering",
+    "MODU engineering services",
+    "floating solar system design",
+    "offshore wind farm engineering",
+    // Geographic & brand
     "maritime services India",
-    "Navi Mumbai",
+    "maritime services Navi Mumbai",
+    "marine engineering company India",
     "Green Ship Technologies",
-    "GST"
   ],
   authors: [{ name: "Green Ship Technologies" }],
   creator: "Green Ship Technologies",
@@ -63,8 +88,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Green Ship Technologies",
-    title: "Green Ship Technologies – Marine, Offshore & Industrial Services",
-    description: "Leading maritime service provider offering ship design, marine software, survey & certification, renewable energy, flag registration, and NDT services.",
+    title: "Green Ship Technologies – Maritime Services | Navi Mumbai, India",
+    description: "Leading maritime service provider since 2009 — Ecoloadmaster stability software, ship design & naval architecture, IHM surveys, flag registration (Panama/Liberia), offshore engineering & ship broking. Serving 200+ clients globally.",
     images: [
       {
         url: `${siteUrl}/og-image.jpg`,
@@ -76,8 +101,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Green Ship Technologies – Marine, Offshore & Industrial Services",
-    description: "Leading maritime service provider offering ship design, marine software, survey & certification, and more.",
+    title: "Green Ship Technologies – Maritime Services | Navi Mumbai, India",
+    description: "Trusted maritime experts since 2009 — ship design, marine software, IHM surveys, flag registration, offshore engineering & ship broking. 200+ clients worldwide.",
     images: [`${siteUrl}/twitter-image.jpg`],
   },
   robots: {
@@ -90,9 +115,6 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  alternates: {
-    canonical: "/",
   },
 };
 
