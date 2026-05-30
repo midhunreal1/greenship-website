@@ -91,7 +91,7 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center">
+    <div style={{ willChange: 'transform' }} className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center">
       {/* Popup */}
       {open && (
         <div className="w-72 sm:w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
@@ -188,8 +188,8 @@ export default function ChatWidget() {
         {/* Pulse rings — only when closed */}
         {!open && (
           <>
-            <span className="absolute inset-0 rounded-full bg-teal/40 animate-ping" />
-            <span className="absolute inset-0 rounded-full bg-teal/20 animate-ping [animation-delay:0.4s]" />
+            <span style={{ willChange: 'transform' }} className="absolute inset-0 rounded-full bg-teal/40 animate-ping" />
+            <span style={{ willChange: 'transform' }} className="absolute inset-0 rounded-full bg-teal/20 animate-ping [animation-delay:0.4s]" />
           </>
         )}
         <button

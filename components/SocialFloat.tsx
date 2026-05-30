@@ -15,7 +15,7 @@ export default function SocialFloat() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-5 z-50 flex flex-col items-center gap-2 sm:gap-3">
+    <div style={{ willChange: 'transform' }} className="fixed bottom-6 right-5 z-50 flex flex-col items-center gap-2 sm:gap-3">
       <div className={`flex flex-col items-center gap-2 sm:gap-3 transition-all duration-300 origin-bottom ${
         open ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-75 pointer-events-none'
       }`}>

@@ -45,7 +45,7 @@ export default function RouteTransitionLoader() {
   return (
     <div
       aria-hidden="true"
-      style={{ willChange: 'opacity' }}
+      style={{ willChange: 'opacity, transform', transform: 'translateZ(0)' }}
       className={`fixed inset-0 z-9999 flex items-center justify-center bg-white transition-opacity duration-150 ${
         isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}

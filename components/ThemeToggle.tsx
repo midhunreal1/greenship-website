@@ -24,6 +24,7 @@ export default function ThemeToggle() {
         bottom: '1.5rem',
         left: '1.25rem',
         zIndex: 50,
+        willChange: 'transform',
         width: '3rem',
         height: '3rem',
         borderRadius: '9999px',
