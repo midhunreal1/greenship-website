@@ -3,7 +3,6 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import StructuredData from "@/components/StructuredData";
 import RouteTransitionLoader from "@/components/RouteTransitionLoader";
-import ScrollRevealInit from "@/components/ScrollRevealInit";
 import SocialFloat from "@/components/SocialFloat";
 import ChatWidget from "@/components/ChatWidget";
 import ThemeProvider from "@/components/ThemeProvider";
@@ -162,10 +161,8 @@ export default function RootLayout({
         <ThemeProvider>
           <GoogleTranslate />
           <RouteTransitionLoader />
-          <ScrollRevealInit />
-          {children}
+{children}
           <SocialFloat />
-          <ChatWidget />
           <ThemeToggle />
         </ThemeProvider>
       </body>
