@@ -66,7 +66,7 @@ export default function IndustriesSection({
 
   return (
     <Section background="grey">
-      <div className="text-center mb-10 sm:mb-12">
+      <div className="text-center mb-10 sm:mb-12" data-reveal="">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-3 sm:mb-4">{title}</h2>
         <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
       </div>
@@ -98,8 +98,10 @@ export default function IndustriesSection({
         </div>
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-          {industries.map((industry) => (
-            <IndustryCard key={industry.id} industry={industry} />
+          {industries.map((industry, i) => (
+            <div key={industry.id} data-reveal="" data-delay={String(i * 75)}>
+              <IndustryCard industry={industry} />
+            </div>
           ))}
         </div>
       )}

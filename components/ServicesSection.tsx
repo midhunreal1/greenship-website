@@ -75,7 +75,7 @@ export default function ServicesSection({
 
   return (
     <Section background="white">
-      <div className="text-center mb-10 sm:mb-12">
+      <div className="text-center mb-10 sm:mb-12" data-reveal="">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-3 sm:mb-4">{title}</h2>
         <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">{subtitle}</p>
       </div>
@@ -107,8 +107,10 @@ export default function ServicesSection({
         </div>
       ) : (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-          {services.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+          {services.map((service, i) => (
+            <div key={service.id} data-reveal="" data-delay={String(i * 75)}>
+              <ServiceCard service={service} />
+            </div>
           ))}
         </div>
       )}

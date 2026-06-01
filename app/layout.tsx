@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import StructuredData from "@/components/StructuredData";
 import RouteTransitionLoader from "@/components/RouteTransitionLoader";
+import ScrollRevealInit from "@/components/ScrollRevealInit";
 import SocialFloat from "@/components/SocialFloat";
 import ChatWidget from "@/components/ChatWidget";
 import ThemeProvider from "@/components/ThemeProvider";
@@ -34,46 +35,43 @@ export const metadata: Metadata = {
   },
   description: "Green Ship Technologies — trusted maritime service provider since 2009. Expert in ship design, Ecoloadmaster stability software, IHM & class surveys, flag registration (Panama, Liberia, Palau), offshore engineering, floating solar & ship broking. 200+ clients across India, Middle East, Far East & Europe.",
   keywords: [
-    // Software
-    "vessel stability software",
-    "loadicator software",
-    "Ecoloadmaster",
-    "marine software development",
-    "fleet management software maritime",
-    // Ship design
-    "ship design",
-    "naval architecture",
-    "ship conversion engineering",
-    "BWTS installation engineering",
-    "scrubber installation engineering",
-    "ship modification design",
-    // Surveys
-    "IHM survey",
-    "Hong Kong Convention IHM",
-    "pre-purchase vessel survey",
-    "marine condition survey",
-    "class and statutory surveys",
-    "flag state inspection",
-    "SOLAS MARPOL compliance",
-    // Flag registration
-    "flag registration",
-    "Panama flag registration",
-    "Liberia flag registration",
-    "open registry ship registration",
-    // Broking
-    "ship broking",
-    "vessel sale and purchase",
-    "ship chartering services",
-    // Offshore & renewable
-    "offshore engineering",
-    "MODU engineering services",
-    "floating solar system design",
-    "offshore wind farm engineering",
+    // Marine software — short & long tail
+    "vessel stability software", "loadicator software for ships", "Ecoloadmaster loading computer",
+    "vessel stability loadicator software bulk carriers tankers", "ship loading computer class approved India",
+    "marine custom software development India", "fleet management software for shipowners",
+    "voyage planning optimization software maritime", "planned maintenance system PMS software ships",
+    // Ship design — short & long tail
+    "ship design India", "naval architecture services Navi Mumbai India",
+    "ship conversion engineering India", "new ship design naval architects India",
+    "BWTS installation engineering class approval India", "BWM Convention D-2 BWTS retrofit services",
+    "scrubber EGCS installation engineering class drawings", "3D laser scanning ship retrofit India",
+    "ship modification design offshore vessels India",
+    // Surveys — short & long tail
+    "IHM survey India", "IHM survey IRS ABS approved India",
+    "Inventory of Hazardous Materials survey Hong Kong Convention",
+    "pre-purchase ship survey India inspection", "condition survey on off hire vessels India",
+    "marine damage survey inspection India", "draft survey bulk carriers India",
+    "bunker quantity quality survey India", "vessel feasibility survey India",
+    "class and statutory surveys SOLAS MARPOL India", "flag state inspection PSC preparation India",
+    "port state control PSC readiness assessment India",
+    // Flag registration — short & long tail
+    "ship flag registration India", "Panama flag registration services India agents",
+    "Liberia flag state ship registration India", "Palau ship registration open registry India",
+    "St Kitts Nevis ship registration affordable registry", "open registry flag registration India",
+    "how to register a ship under Panama flag India",
+    // Ship broking — short & long tail
+    "ship broking India", "ship sale purchase brokerage India second-hand vessels",
+    "vessel sale purchase S&P transaction India", "time charter bareboat charter arrangement India",
+    "ship chartering services voyage charter India",
+    // Offshore & renewable — short & long tail
+    "offshore engineering India", "MODU mobile offshore drilling unit services India",
+    "mooring motion analysis offshore vessels India", "pipe cable lay analysis offshore India",
+    "sea fastening towage marine warranty India", "floating solar PV system design India",
+    "offshore wind farm engineering services India", "renewable energy marine engineering India",
     // Geographic & brand
-    "maritime services India",
-    "maritime services Navi Mumbai",
-    "marine engineering company India",
-    "Green Ship Technologies",
+    "maritime services India", "maritime services Navi Mumbai", "marine engineering company Mumbai India",
+    "ship survey services Mumbai India", "maritime consultant India Middle East Far East",
+    "Green Ship Technologies", "GST maritime India",
   ],
   authors: [{ name: "Green Ship Technologies" }],
   creator: "Green Ship Technologies",
@@ -164,6 +162,7 @@ export default function RootLayout({
         <ThemeProvider>
           <GoogleTranslate />
           <RouteTransitionLoader />
+          <ScrollRevealInit />
           {children}
           <SocialFloat />
           <ChatWidget />

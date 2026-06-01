@@ -15,6 +15,124 @@ import { products } from '@/data/products';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';
 
+type Faq = { q: string; a: string };
+
+const subitemFaqs: Record<string, Faq[]> = {
+  'ecoloadmaster': [
+    { q: 'What is a loadicator software for ships?', a: 'A loadicator (or loading computer) is onboard stability software that calculates vessel stability, trim, stress, and load conditions in real time. Ecoloadmaster by Green Ship Technologies is an advanced loadicator delivering class-compliant stability calculations for all vessel types.' },
+    { q: 'Which vessel types does Ecoloadmaster support?', a: 'Ecoloadmaster supports bulk carriers, tankers, container ships, general cargo vessels, offshore support vessels, and more. Each installation is customised to the vessel\'s approved stability booklet.' },
+    { q: 'Is Ecoloadmaster loading computer software class approved?', a: 'Yes. Ecoloadmaster is developed in accordance with classification society requirements and can be submitted for class approval for vessels that require an approved loading computer under their flag or class rules.' },
+    { q: 'How is Ecoloadmaster installed on a vessel?', a: 'Ecoloadmaster is installed on the ship\'s bridge computer or a dedicated PC. Our team handles remote or onsite installation, calibration to the vessel\'s stability booklet, and crew training.' },
+  ],
+  'marine-custom-software-development': [
+    { q: 'What types of custom maritime software can Green Ship Technologies develop?', a: 'We develop fleet management systems, voyage planning & optimization tools, planned maintenance systems (PMS), document management platforms, port & cargo operations software, and API integrations with third-party maritime systems.' },
+    { q: 'Can you develop a planned maintenance system (PMS) for ships?', a: 'Yes. Our custom PMS solutions are aligned with class survey requirements and include scheduled maintenance tracking, spares management, defect reporting, and compliance documentation.' },
+    { q: 'How long does it take to develop custom maritime software?', a: 'Development timelines vary by scope. A typical fleet management or PMS platform takes 3-6 months from requirement analysis to deployment. We follow an agile approach with regular client reviews.' },
+  ],
+  'ship-design': [
+    { q: 'What ship design services are available in India?', a: 'Green Ship Technologies offers full-scope ship design services in India — new vessel concept and detailed design, ship conversion design, structural modifications, and class approval drawings — delivered by experienced naval architects using specialized marine software.' },
+    { q: 'Can you design offshore support vessels (OSVs)?', a: 'Yes. Our naval architects have experience designing platform supply vessels (PSVs), anchor handling tug supply (AHTS) vessels, crew boats, and other offshore support vessel types.' },
+    { q: 'What software do you use for ship design?', a: 'We use industry-standard naval architecture software including AutoCAD, NAPA, MAXSURF, and Rhino for hull form design, stability analysis, structural design, and 3D modelling.' },
+  ],
+  'retrofit-conversion': [
+    { q: 'What is BWTS installation engineering for an existing vessel?', a: 'BWTS (Ballast Water Treatment System) installation engineering covers the full retrofit process — vessel feasibility inspection, 3D laser scanning of ballast spaces, detailed design and piping drawings, class approval submission, and installation supervision at the shipyard or in port.' },
+    { q: 'What is the BWM Convention D-2 standard and who must comply?', a: 'The IMO Ballast Water Management (BWM) Convention D-2 standard limits the number of living organisms permitted in discharged ballast water. All ships in international trade must comply by fitting an approved BWTS by their IOPP renewal survey date.' },
+    { q: 'What engineering is required for scrubber (EGCS) installation on a ship?', a: 'Scrubber installation requires vessel feasibility assessment, 3D laser scanning of the engine room, exhaust uptake route design, structural and weight calculations, class approval drawings, and installation supervision. Green Ship Technologies manages the complete engineering package.' },
+    { q: 'How long does a BWTS retrofit project take?', a: 'Typical BWTS retrofit engineering takes 4-8 weeks from vessel inspection to class-approved drawings. Actual shipyard installation takes 1-3 weeks depending on the BWTS type and vessel size.' },
+  ],
+  'offshore-engineering': [
+    { q: 'What offshore engineering services does Green Ship Technologies provide?', a: 'We provide MODU and self-elevating platform services, mooring and motion analysis, pipe and cable lay analysis, installation and modification studies, structural and FEM analysis, and towage and sea fastening engineering.' },
+    { q: 'What is mooring analysis for offshore vessels and FPSOs?', a: 'Mooring analysis evaluates the forces on a vessel\'s mooring system under environmental loads (wind, waves, current) to ensure the mooring design is safe and adequate for the operational location and conditions.' },
+    { q: 'What is sea fastening analysis for marine transportation?', a: 'Sea fastening analysis determines the structural requirements for securing cargo (modules, equipment, structures) on a transport vessel for an ocean voyage, complying with marine warranty surveyor and classification society requirements.' },
+  ],
+  'ihm-surveys': [
+    { q: 'What is an IHM survey and why is it required?', a: 'An Inventory of Hazardous Materials (IHM) survey is a systematic inspection of a ship\'s structure and equipment to identify and document materials containing substances such as asbestos, PCBs, and heavy metals. It is required under the Hong Kong Convention for Safe and Environmentally Sound Recycling of Ships and is increasingly mandated by flag states, port states, and charterers.' },
+    { q: 'Is IHM mandatory for all ships?', a: 'IHM is mandatory for ships over 500 GT engaged in international voyages under the Hong Kong Convention. Many flag states, P&I clubs, and major charterers now require IHM compliance as part of their due diligence and ESG requirements, regardless of convention ratification.' },
+    { q: 'Who is approved to conduct IHM surveys in India?', a: 'Green Ship Technologies is approved by IRS (Indian Register of Shipping) and ABS (American Bureau of Shipping) to conduct IHM surveys. Our IHM specialists perform onboard inspections, documentation review, and provide complete IHM certification.' },
+    { q: 'What is the difference between IHM Part I, Part II, and Part III?', a: 'IHM Part I covers hazardous materials in the ship\'s structure and equipment. Part II covers operationally generated wastes. Part III covers stores. The Hong Kong Convention primarily addresses Part I, which must be certified by the flag state administration or a recognised organisation.' },
+    { q: 'How long does an IHM survey take?', a: 'An IHM onboard inspection typically takes 3-5 working days depending on vessel size and type. The complete process including sample analysis, documentation, and certification normally takes 3-6 weeks.' },
+  ],
+  'marine-surveys': [
+    { q: 'What is a pre-purchase ship survey?', a: 'A pre-purchase survey is a comprehensive inspection of a vessel\'s hull, machinery, equipment, and documentation conducted before a sale. It identifies defects, estimates repair costs, and helps buyers assess the vessel\'s condition and fair market value.' },
+    { q: 'What is an on/off hire condition survey?', a: 'An on-hire survey documents a vessel\'s condition at the commencement of a charter, and an off-hire survey at the end, to determine what damage or deterioration occurred during the charter period for commercial settlement between owners and charterers.' },
+    { q: 'How is a draft survey conducted for bulk carriers?', a: 'A draft survey determines bulk cargo quantity by measuring the vessel\'s draft forward, aft, and midship before and after loading or discharging, then calculating the change in displacement. It is widely used for coal, grain, and ore cargoes.' },
+    { q: 'What is a bunker survey and when is it required?', a: 'A bunker survey measures and verifies the quantity (and often quality) of fuel oil on board or transferred. It is required during vessel deliveries, redeliveries, bunker transfers, and whenever disputes arise between owners, charterers, or bunker suppliers.' },
+  ],
+  'class-statutory-surveys': [
+    { q: 'What is the difference between a class survey and a statutory survey?', a: 'A class survey is conducted by a classification society to maintain a vessel\'s class notation, verifying structural and mechanical condition. A statutory survey is conducted on behalf of the flag state to verify compliance with international conventions such as SOLAS, MARPOL, and STCW. Many vessels require both.' },
+    { q: 'What SOLAS surveys are required for ships?', a: 'SOLAS requires periodic safety equipment surveys (life-saving appliances, fire-fighting equipment), radio surveys, and cargo ship safety construction surveys at specified intervals. These are mandatory for all ships engaged in international voyages.' },
+    { q: 'What is port state control (PSC) and how can deficiencies be avoided?', a: 'Port State Control is the inspection of foreign vessels in national ports to verify compliance with international maritime conventions. Common PSC deficiencies include expired certificates, defective fire and safety equipment, crew certification issues, and ISM non-conformities. Green Ship Technologies provides PSC readiness assessments to prepare vessels.' },
+  ],
+  'flag-state-inspections': [
+    { q: 'What is a flag state inspection?', a: 'A flag state inspection verifies that a vessel and its crew meet all requirements of the flag state administration and applicable international conventions, including SOLAS, MARPOL, MLC, and STCW.' },
+    { q: 'How do I prepare for a Port State Control (PSC) inspection?', a: 'PSC preparation involves auditing all statutory certificates for validity, ensuring safety equipment is operational and documented, verifying crew certificates and watchkeeping arrangements, and conducting emergency drills. Green Ship Technologies provides comprehensive pre-PSC assessments.' },
+    { q: 'What are common reasons for PSC vessel detention?', a: 'Common PSC detention grounds include expired or defective fire and life-saving appliances, ISM non-conformities, crew certificate deficiencies, inadequate working and rest hours records, and defective navigation equipment.' },
+  ],
+  'floating-solar-system-design': [
+    { q: 'What is floating solar system design?', a: 'Floating solar (FPV) system design covers the engineering of photovoltaic panel arrays mounted on floating platforms on water bodies. It includes site hydrodynamic assessment, floatation and mooring system design, structural analysis, panel orientation optimisation, and environmental impact assessment.' },
+    { q: 'What marine engineering standards apply to floating solar systems?', a: 'Floating solar systems on open water bodies must comply with relevant classification society guidance, IEC standards for PV systems, and local environmental regulations. Marine engineering inputs include wave and current loading, corrosion protection, and anchoring design for the specific water body.' },
+    { q: 'What water bodies are suitable for floating solar installations?', a: 'Floating solar is suitable for lakes, reservoirs, irrigation ponds, hydropower reservoirs, and calm coastal or estuarine areas. Suitability depends on water depth, wave conditions, water quality, and proximity to grid connection.' },
+  ],
+  'wind-farm-engineering-support': [
+    { q: 'What offshore wind farm engineering services do you offer in India?', a: 'Green Ship Technologies provides site assessment and selection, turbine layout optimisation, offshore foundation design, electrical system and grid connection engineering, marine transportation engineering, and long-term monitoring and maintenance planning for offshore wind projects.' },
+    { q: 'What types of offshore wind foundations can you design?', a: 'We support monopile, jacket, tripod, gravity-base, and floating offshore wind foundation concepts. Foundation type selection depends on water depth, seabed conditions, wave and wind loading, and project economics.' },
+  ],
+  'sale-purchase-brokering': [
+    { q: 'What does a ship sale and purchase broker do?', a: 'A ship S&P broker acts as an intermediary between buyers and sellers of vessels. They identify suitable vessels, conduct market analysis and valuation, negotiate terms on behalf of clients, draft MOAs (Memoranda of Agreement), and manage the transaction through to delivery.' },
+    { q: 'How is vessel value determined in a sale and purchase transaction?', a: 'Vessel value is assessed through market comparable analysis (recent sales of similar vessels), condition survey findings, age and remaining useful life, current freight market conditions, and any outstanding class or repair requirements.' },
+  ],
+  'chartering-brokers': [
+    { q: 'What is the difference between voyage charter and time charter?', a: 'In a voyage charter, the shipowner provides the vessel for a specific voyage and voyage costs are the owner\'s responsibility. In a time charter, the charterer hires the vessel for a period and pays hire plus voyage costs (fuel, port charges). Each structure has different risk and cost implications.' },
+    { q: 'What is a bareboat charter?', a: 'A bareboat (or demise) charter is where the charterer takes full operational and navigational control of the vessel, hiring the hull alone without crew or management. The charterer operates the vessel as if they were the owner for the charter period.' },
+    { q: 'What is post-fixture management in ship chartering?', a: 'Post-fixture management covers all commercial and operational activities after a charter party is agreed — including hire payments, voyage instructions, cargo claims, laytime and demurrage calculations, and dispute resolution.' },
+  ],
+};
+
+type HowToStep = { name: string; text: string };
+type HowTo = { name: string; description: string; totalTime?: string; steps: HowToStep[] };
+
+const subitemHowTo: Record<string, HowTo> = {
+  'ihm-surveys': {
+    name: 'How to Complete an IHM Survey for Hong Kong Convention Compliance',
+    description: 'Step-by-step process for conducting an Inventory of Hazardous Materials (IHM) survey on a commercial vessel — from initial documentation review through to certification.',
+    totalTime: 'P4W',
+    steps: [
+      { name: 'Initial Document Review', text: 'Green Ship Technologies reviews the vessel\'s construction plans, equipment lists, paint records, and any existing hazardous materials documentation to identify likely locations of regulated substances.' },
+      { name: 'Onboard Visual Inspection', text: 'Our approved IHM surveyor conducts a systematic visual inspection of all ship areas, identifying materials suspected to contain asbestos, PCBs, lead-based paint, TBT, and other listed hazardous substances per IHM Guidelines.' },
+      { name: 'Sample Collection and Analysis', text: 'Where visual inspection is inconclusive, representative samples are collected from suspect materials and sent to an accredited laboratory for chemical analysis (XRF, WDXRF, or wet chemistry as appropriate).' },
+      { name: 'Compilation of IHM Part I', text: 'Laboratory results and inspection findings are compiled into the formal IHM Part I document, listing all identified hazardous materials with location, approximate quantity, and condition.' },
+      { name: 'Documentation Review and Approval', text: 'The completed IHM and supporting evidence are submitted to the flag state administration or recognised organisation (e.g. IRS or ABS) for review and approval of the IHM Statement of Compliance.' },
+      { name: 'Certification Issued', text: 'Upon approval, the vessel receives its IHM Statement of Compliance, valid for up to five years with periodic updates required whenever significant alterations or repairs affect the hazardous materials inventory.' },
+    ],
+  },
+  'retrofit-conversion': {
+    name: 'How a BWTS Retrofit Engineering Project Works',
+    description: 'End-to-end engineering process for retrofitting a Ballast Water Treatment System (BWTS) on an existing commercial vessel, from feasibility to class-approved installation.',
+    totalTime: 'P8W',
+    steps: [
+      { name: 'Vessel Feasibility Assessment', text: 'Our engineers review general arrangement drawings, ballast system P&IDs, and engine room layouts to assess available space, pipe routing, and power supply options for the selected BWTS technology.' },
+      { name: '3D Laser Scanning', text: 'The vessel\'s ballast spaces, engine room, and proposed installation areas are 3D laser-scanned to produce an accurate as-built model, eliminating site dimension errors and reducing shipyard rework.' },
+      { name: 'BWTS Selection and Engineering Design', text: 'Based on ballast water capacity, vessel trading pattern, and shipowner preference, an appropriate BWTS is selected. Detailed engineering drawings are produced: piping arrangement, structural modifications, cable routing, and weight & stability impact calculations.' },
+      { name: 'Class Approval Submission', text: 'Engineering drawings and calculations are submitted to the vessel\'s classification society for plan approval. Comments are addressed and the final approved drawing set is issued.' },
+      { name: 'Shipyard Installation Support', text: 'Our team provides on-site installation supervision at the shipyard or during dry-dock to ensure work is executed in accordance with the approved drawings and BWTS maker\'s guidelines.' },
+      { name: 'Commissioning and Sea Trials', text: 'After installation, the BWTS is functionally tested, commissioned, and its performance documented. The classification society surveyor attends for final inspection and endorsement of the BWTS IOPP certificate.' },
+    ],
+  },
+  'flag-state-inspections': {
+    name: 'How to Prepare for a Flag State or Port State Control Inspection',
+    description: 'A practical step-by-step guide to preparing a vessel for flag state and PSC inspections, minimising the risk of deficiencies and detention.',
+    totalTime: 'P2W',
+    steps: [
+      { name: 'Certificate and Document Audit', text: 'All statutory certificates (SOLAS, MARPOL, MLC, Load Line) and class certificates are audited for validity. Missing or near-expiry certificates are identified and renewal initiated with flag state or classification society.' },
+      { name: 'Safety Equipment Check', text: 'Life-saving appliances (lifeboats, rescue boats, life rings, EPIRBs, SARTs), fire-fighting equipment, and navigation equipment are inspected, tested, and serviced as required. Maintenance records are updated.' },
+      { name: 'ISM SMS Compliance Review', text: 'The vessel\'s Safety Management System documentation — drill records, non-conformity reports, master\'s review, and critical equipment list — is reviewed for completeness and up-to-date entries.' },
+      { name: 'Crew Certification and Rest Hours Verification', text: 'STCW certificates and medical certificates for all crew are verified against the vessel\'s Manning Certificate. Work and rest hour records are reviewed for compliance with MLC and STCW requirements.' },
+      { name: 'MARPOL and Pollution Prevention Records', text: 'Oil Record Book, Garbage Management Plan, sewage system, ozone-depleting substance records, and EGCS wash water discharge logs (if applicable) are reviewed and corrected where necessary.' },
+      { name: 'Pre-Inspection Familiarisation Drill', text: 'An emergency drill covering muster, firefighting, abandon ship, and man overboard procedures is conducted and recorded to demonstrate crew readiness to inspectors.' },
+    ],
+  },
+};
+
 const subitemSeoMeta: Record<string, { title: string; description: string }> = {
   'ecoloadmaster': {
     title: 'Ecoloadmaster Loadicator Software | Vessel Stability, Trim & Load Monitoring',
@@ -115,6 +233,34 @@ export default async function SubItemPage({ params }: Props) {
   const detail = subItemDetails.find((d) => d.slug === subitemSlug && (!d.parentSlug || d.parentSlug === serviceSlug));
   const product = products.find((p) => p.slug === subitemSlug);
   const relatedSubItems = parentService.subItems?.filter((sub) => sub.slug !== subitemSlug) ?? [];
+  const faqs = subitemFaqs[subitemSlug] ?? [];
+
+  const faqSchema = faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  } : null;
+
+  const howToData = subitemHowTo[subitemSlug];
+  const howToSchema = howToData ? {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: howToData.name,
+    description: howToData.description,
+    ...(howToData.totalTime ? { totalTime: howToData.totalTime } : {}),
+    supply: [],
+    tool: [],
+    step: howToData.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  } : null;
 
   const serviceSchema = {
     '@context': 'https://schema.org',
@@ -142,6 +288,8 @@ export default async function SubItemPage({ params }: Props) {
     <>
       <Script id="service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <Script id="breadcrumb-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {faqSchema && <Script id="faq-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      {howToSchema && <Script id="howto-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />}
       <Navbar />
       <main>
         {/* Hero */}
@@ -317,6 +465,33 @@ export default async function SubItemPage({ params }: Props) {
               </div>
             </div>
           </section>
+        )}
+
+        {/* FAQ section */}
+        {faqs.length > 0 && (
+          <Section background="grey">
+            <div className="max-w-3xl mx-auto">
+              <div className="text-center mb-8" data-reveal="">
+                <h2 className="text-2xl sm:text-3xl font-bold text-navy mb-2">Frequently Asked Questions</h2>
+                <p className="text-gray-600 text-sm">Common questions about {subItem.title.toLowerCase()}</p>
+              </div>
+              <div className="space-y-3">
+                {faqs.map(({ q, a }, i) => (
+                  <details key={i} className="group bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden" data-reveal="" data-delay={String(i * 75)}>
+                    <summary className="flex items-center justify-between gap-4 p-5 cursor-pointer list-none">
+                      <span className="font-semibold text-navy text-sm sm:text-base leading-snug">{q}</span>
+                      <span className="shrink-0 w-7 h-7 rounded-full bg-teal/10 flex items-center justify-center group-open:bg-teal/20 transition-colors">
+                        <Icon name="ChevronDown" size={14} className="text-teal-dark transition-transform duration-200 group-open:rotate-180" />
+                      </span>
+                    </summary>
+                    <div className="px-5 pb-5 border-t border-gray-100">
+                      <p className="text-gray-600 text-sm leading-relaxed pt-3">{a}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </Section>
         )}
 
         {/* Other sub-services under same parent */}

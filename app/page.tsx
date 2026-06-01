@@ -75,8 +75,8 @@ export default function Home() {
                     { value: companyInfo.clientsServed, label: 'Clients Served' },
                     { value: companyInfo.projectsCompleted, label: 'Projects Done' },
                     { value: '15+', label: 'Services' },
-                  ].map((stat) => (
-                    <div key={stat.label} className="text-center">
+                  ].map((stat, i) => (
+                    <div key={stat.label} className="text-center" data-reveal="" data-delay={String(i * 75)}>
                       <div className="text-2xl lg:text-3xl font-bold text-teal">{stat.value}</div>
                       <div className="text-white/80 mt-1 text-xs">{stat.label}</div>
                     </div>
@@ -118,7 +118,7 @@ export default function Home() {
                   { src: '/services/ship2.webp', alt: 'Marine vessel' },
                   { src: '/services/ship-drydock-3.webp', alt: 'Shipyard drydock' },
                 ].map((img, i) => (
-                  <div key={i} className="aspect-square rounded-xl overflow-hidden">
+                  <div key={i} className="aspect-square rounded-xl overflow-hidden" data-reveal="" data-delay={String(i * 75)}>
                     <Image
                       src={img.src}
                       alt={img.alt}
@@ -135,7 +135,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div>
+            <div data-reveal="">
               <div className="mb-4">
                 <span className="text-teal-dark font-semibold text-sm tracking-wider uppercase">About Green Ship Technologies</span>
               </div>
@@ -192,18 +192,18 @@ export default function Home() {
         <Section background="white">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="mb-4">
+              <div className="mb-4" data-reveal="">
                 <span className="text-teal-dark font-semibold text-sm tracking-wider uppercase">Why Choose GST</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-6" data-reveal="" data-delay="75">
                 Why Choose Green Ship Technologies?
               </h2>
-              <p className="text-base sm:text-lg text-gray-600 mb-8">
+              <p className="text-base sm:text-lg text-gray-600 mb-8" data-reveal="" data-delay="150">
                 We combine deep maritime expertise with modern technology to deliver exceptional results for every client
               </p>
               <div className="space-y-3">
                 {companyInfo.coreValues.map((value, index) => (
-                  <div key={index} className="flex items-start gap-3 bg-light-grey rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                  <div key={index} className="flex items-start gap-3 bg-light-grey rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow" data-reveal="" data-delay={String(225 + index * 75)}>
                     <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-teal to-ocean rounded-lg flex items-center justify-center">
                       <span className="text-white font-bold text-sm">{index + 1}</span>
                     </div>
@@ -224,7 +224,7 @@ export default function Home() {
                   { src: '/services/ship1.webp', alt: 'Marine vessel operations' },
                   { src: '/services/ship-drydock-3.webp', alt: 'Shipyard engineering' },
                 ].map((img, i) => (
-                  <div key={i} className="aspect-square rounded-2xl overflow-hidden shadow-lg">
+                  <div key={i} className="aspect-square rounded-2xl overflow-hidden shadow-lg" data-reveal="" data-delay={String(i * 75)}>
                     <Image
                       src={img.src}
                       alt={img.alt}
@@ -244,7 +244,7 @@ export default function Home() {
 
         {/* Flag Registration Highlight */}
         <Section background="grey">
-          <div className="text-center mb-10">
+          <div className="text-center mb-10" data-reveal="">
             <span className="text-teal-dark font-semibold text-sm tracking-wider uppercase">Flag Registration Services</span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">
               Vessel Registration Across Major Registries
@@ -262,8 +262,8 @@ export default function Home() {
               { name: 'Comoros',          code: 'km' },
               { name: 'Cook Islands',     code: 'ck' },
               { name: 'Belize',           code: 'bz' },
-            ].map((flag) => (
-              <div key={flag.name} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow hover:-translate-y-1 duration-300">
+            ].map((flag, i) => (
+              <div key={flag.name} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow hover:-translate-y-1 duration-300" data-reveal="" data-delay={String(i * 50)}>
                 <Image
                   src={`https://flagcdn.com/48x36/${flag.code}.png`}
                   width={48}
