@@ -13,7 +13,7 @@ interface ServicesSectionProps {
   subtitle?: string;
 }
 
-function ServiceCard({ service }: { service: Service }) {
+function ServiceCard({ service, priority = false }: { service: Service; priority?: boolean }) {
   return (
     <div className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-[box-shadow,transform,border-color] duration-300 hover:-translate-y-2 border border-gray-100 hover:border-teal/40">
       {service.image && (
@@ -22,7 +22,8 @@ function ServiceCard({ service }: { service: Service }) {
             src={service.image}
             alt={service.title}
             fill
-            loading="lazy"
+            priority={priority}
+            loading={priority ? undefined : 'lazy'}
             sizes="(max-width: 768px) calc(100vw - 5rem), (max-width: 1024px) 50vw, 25vw"
             quality={75}
             className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -65,7 +66,7 @@ export default function ServicesSection({
       clearTimeout(timer);
       timer = setTimeout(() => setIsSmallScreen(window.innerWidth < 1024), 150);
     };
-    setIsSmallScreen(window.innerWidth < 1024);
+    timer = setTimeout(() => setIsSmallScreen(window.innerWidth < 1024), 0);
     window.addEventListener('resize', handleResize, { passive: true });
     return () => { window.removeEventListener('resize', handleResize); clearTimeout(timer); };
   }, []);
@@ -90,9 +91,9 @@ export default function ServicesSection({
           </button>
           <div className="overflow-hidden">
             <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-              {services.map((service) => (
+              {services.map((service, i) => (
                 <div key={service.id} className="w-full shrink-0 px-6">
-                  <ServiceCard service={service} />
+                  <ServiceCard service={service} priority={i === 0} />
                 </div>
               ))}
             </div>

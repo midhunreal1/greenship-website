@@ -13,14 +13,14 @@ const bodyFont = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500"],
-  display: "swap",
+  display: "optional",
 });
 
 const headingFont = Space_Grotesk({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["600", "700"],
-  display: "swap",
+  display: "optional",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenshiptech.com';

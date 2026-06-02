@@ -12,7 +12,7 @@ interface IndustriesSectionProps {
   subtitle?: string;
 }
 
-function IndustryCard({ industry }: { industry: Industry }) {
+function IndustryCard({ industry, priority = false }: { industry: Industry; priority?: boolean }) {
   return (
     <div className="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-[box-shadow,transform] duration-300 hover:-translate-y-1">
       {industry.image && (
@@ -21,7 +21,8 @@ function IndustryCard({ industry }: { industry: Industry }) {
             src={industry.image}
             alt={industry.title}
             fill
-            loading="lazy"
+            priority={priority}
+            loading={priority ? undefined : 'lazy'}
             sizes="(max-width: 768px) calc(100vw - 5rem), (max-width: 1024px) 50vw, 25vw"
             quality={75}
             className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -56,7 +57,7 @@ export default function IndustriesSection({
       clearTimeout(timer);
       timer = setTimeout(() => setIsSmallScreen(window.innerWidth < 1024), 150);
     };
-    setIsSmallScreen(window.innerWidth < 1024);
+    timer = setTimeout(() => setIsSmallScreen(window.innerWidth < 1024), 0);
     window.addEventListener('resize', handleResize, { passive: true });
     return () => { window.removeEventListener('resize', handleResize); clearTimeout(timer); };
   }, []);
@@ -81,9 +82,9 @@ export default function IndustriesSection({
           </button>
           <div className="overflow-hidden">
             <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-              {industries.map((industry) => (
+              {industries.map((industry, i) => (
                 <div key={industry.id} className="w-full shrink-0 px-6">
-                  <IndustryCard industry={industry} />
+                  <IndustryCard industry={industry} priority={i === 0} />
                 </div>
               ))}
             </div>

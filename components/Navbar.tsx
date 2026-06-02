@@ -525,7 +525,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-2">
               <Image src="/logo.svg" alt="Green Ship Technologies" width={35} height={35} priority className="object-contain" />
-              <span className="text-lg font-bold text-navy">Green Ship Technologies</span>
+              <span className="text-sm leading-tight sm:text-lg font-bold text-navy">Green Ship Technologies</span>
             </Link>
             {desktopLinks(true)}
             <div className="min-[1114px]:hidden flex items-center gap-2">
@@ -554,7 +554,7 @@ export default function Navbar() {
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center space-x-3">
               <Image src="/logo.svg" alt="Green Ship Technologies" width={45} height={45} priority className="object-contain" />
-              <span className="text-lg font-bold text-navy">Green Ship Technologies</span>
+              <span className="text-sm leading-tight sm:text-lg font-bold text-navy">Green Ship Technologies</span>
             </Link>
             {desktopLinks(false)}
             <div className="min-[1114px]:hidden flex items-center gap-2">
