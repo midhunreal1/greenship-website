@@ -80,7 +80,7 @@ export default function TestimonialCarousel({
             {displayed.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 shrink-0"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 shrink-0"
                 style={{ width: `calc((100% - ${(testimonialsToShow - 1) * 2}rem) / ${testimonialsToShow})` }}
               >
                 <div className="flex mb-4">

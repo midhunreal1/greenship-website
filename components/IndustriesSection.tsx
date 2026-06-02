@@ -22,8 +22,8 @@ function IndustryCard({ industry }: { industry: Industry }) {
             alt={industry.title}
             fill
             loading="lazy"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-            quality={90}
+            sizes="(max-width: 768px) calc(100vw - 5rem), (max-width: 1024px) 50vw, 25vw"
+            quality={75}
             className="object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-linear-to-t from-navy/50 to-transparent" />

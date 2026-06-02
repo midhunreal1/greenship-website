@@ -17,6 +17,10 @@
     "react-dom": "19.2.0",
     "react-icons": "^5.5.0"
   },
+  "browserslist": {
+    "production": ["chrome >= 93", "firefox >= 90", "safari >= 15", "edge >= 93"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
