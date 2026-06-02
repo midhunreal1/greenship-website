@@ -61,7 +61,7 @@ export default function BlogPage() {
               href={`/blog/${featured.slug}`}
               className="group grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300"
             >
-              <div className="relative h-64 lg:h-full min-h-[280px] overflow-hidden">
+              <div className="relative h-44 sm:h-56 lg:h-full lg:min-h-[280px] overflow-hidden">
                 <Image
                   src={featured.image}
                   alt={featured.title}

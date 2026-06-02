@@ -41,7 +41,7 @@ export default function Home() {
             <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-teal rounded-full filter blur-2xl -translate-x-1/2 -translate-y-1/2"></div>
           </div>
 
-          <div className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 relative z-10">
+          <div className="px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-28 relative z-10">
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <div>
                 <div className="inline-block mb-6">
@@ -69,7 +69,7 @@ export default function Home() {
                 </div>
 
                 {/* Stats */}
-                <div className="mt-12 grid grid-cols-4 gap-4">
+                <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                   {[
                     { value: companyInfo.yearsExperience, label: 'Years Experience' },
                     { value: companyInfo.clientsServed, label: 'Clients Served' },
@@ -109,7 +109,7 @@ export default function Home() {
         <Section background="white">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2 sm:gap-4">
                 {[
                   { src: '/services/ship1.webp', alt: 'Vessel at sea' },
                   { src: '/services/shipdesign.jpeg', alt: 'Ship design engineering' },
@@ -145,7 +145,7 @@ export default function Home() {
               <p className="text-gray-600 leading-relaxed mb-6">
                 {companyInfo.description}
               </p>
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-2 sm:gap-4 mb-6">
                 {[
                   { icon: 'Ship', text: 'Naval Architects' },
                   { icon: 'Wrench', text: 'Marine Engineers' },
@@ -203,7 +203,7 @@ export default function Home() {
               </p>
               <div className="space-y-3">
                 {companyInfo.coreValues.map((value, index) => (
-                  <div key={index} className="flex items-start gap-3 bg-light-grey rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow" data-reveal="" data-delay={String(225 + index * 75)}>
+                  <div key={index} className="flex items-start gap-3 bg-light-grey rounded-lg p-3 sm:p-4 shadow-sm hover:shadow-md transition-shadow" data-reveal="" data-delay={String(225 + index * 75)}>
                     <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-teal to-ocean rounded-lg flex items-center justify-center">
                       <span className="text-white font-bold text-sm">{index + 1}</span>
                     </div>
@@ -253,7 +253,7 @@ export default function Home() {
               We facilitate seamless flag registration under leading open registries worldwide
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2 sm:gap-4">
             {[
               { name: 'Panama',           code: 'pa' },
               { name: 'Liberia',          code: 'lr' },
@@ -263,7 +263,7 @@ export default function Home() {
               { name: 'Cook Islands',     code: 'ck' },
               { name: 'Belize',           code: 'bz' },
             ].map((flag, i) => (
-              <div key={flag.name} className="bg-white rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow hover:-translate-y-1 duration-300" data-reveal="" data-delay={String(i * 50)}>
+              <div key={flag.name} className="bg-white rounded-xl p-2.5 sm:p-4 text-center shadow-sm hover:shadow-md transition-shadow hover:-translate-y-1 duration-300" data-reveal="" data-delay={String(i * 50)}>
                 <Image
                   src={`https://flagcdn.com/48x36/${flag.code}.png`}
                   width={48}

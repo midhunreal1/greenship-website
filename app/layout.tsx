@@ -3,24 +3,23 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import StructuredData from "@/components/StructuredData";
 import RouteTransitionLoader from "@/components/RouteTransitionLoader";
-import SocialFloat from "@/components/SocialFloat";
-import ChatWidget from "@/components/ChatWidget";
 import ThemeProvider from "@/components/ThemeProvider";
 import ThemeToggle from "@/components/ThemeToggle";
 import GoogleTranslate from "@/components/GoogleTranslate";
+import ClientWidgets from "@/components/ClientWidgets";
 import "./globals.css";
 
 const bodyFont = Inter({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
 const headingFont = Space_Grotesk({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700"],
   display: "swap",
 });
 
@@ -165,7 +164,7 @@ export default function RootLayout({
           <GoogleTranslate />
           <RouteTransitionLoader />
 {children}
-          <SocialFloat />
+          <ClientWidgets />
           <ThemeToggle />
         </ThemeProvider>
       </body>

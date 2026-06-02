@@ -166,7 +166,7 @@ export default function Footer() {
 
               <div className="text-sm text-white">
                 <h5 className="font-semibold mb-2">Stay Updated</h5>
-                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2 sm:flex-row">
                   <input
                     type="email"
                     name="email"
@@ -175,12 +175,12 @@ export default function Footer() {
                     placeholder="Your email address"
                     required
                     disabled={isSubmitting}
-                    className="flex-1 px-3 py-2 rounded-md bg-navy text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal text-sm disabled:opacity-50"
+                    className="w-full sm:flex-1 px-3 py-2 rounded-md bg-navy text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal text-sm disabled:opacity-50"
                   />
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-linear-to-r from-teal to-teal-dark text-white px-4 py-2 rounded-md hover:shadow-lg hover:scale-105 transition-all duration-200 text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full sm:w-auto bg-linear-to-r from-teal to-teal-dark text-white px-4 py-2 rounded-md hover:shadow-lg hover:scale-105 transition-all duration-200 text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Sending...' : 'Subscribe'}
                   </button>
