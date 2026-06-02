@@ -22,7 +22,6 @@ const categoryColors: Record<string, string> = {
   'Marine Software':       'bg-blue-100 text-blue-800',
   'Flag Registration':     'bg-emerald-100 text-emerald-800',
   'Ship Design':           'bg-purple-100 text-purple-800',
-  'NDT Services':          'bg-orange-100 text-orange-800',
   'Renewable Energy':      'bg-yellow-100 text-yellow-800',
   'Survey & Certification':'bg-teal-100 text-teal-800',
 };
@@ -48,7 +47,7 @@ export default function BlogPage() {
               Blog & Articles
             </h1>
             <p className="text-base sm:text-lg text-white/80 max-w-3xl mx-auto">
-              Expert insights on marine software, ship design, survey & certification, flag registration, NDT, and offshore renewable energy — written by maritime practitioners.
+              Expert insights on marine software, ship design, survey & certification, flag registration, and offshore renewable energy — written by maritime practitioners.
             </p>
           </div>
         </section>
