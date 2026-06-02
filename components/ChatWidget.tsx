@@ -195,7 +195,7 @@ export default function ChatWidget() {
         <button
           onClick={() => setOpen((p) => !p)}
           aria-label={open ? 'Close chat' : 'Open chat'}
-          className="relative w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-linear-to-br from-teal to-teal-dark shadow-lg hover:scale-110 transition-all duration-200 flex items-center justify-center"
+          className="relative w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-linear-to-br from-teal to-teal-dark shadow-lg hover:scale-110 transition-transform duration-200 flex items-center justify-center"
           style={{ boxShadow: '0 0 0 3px #ffffff, 0 8px 24px rgba(0,180,160,0.4)' }}
         >
           {open

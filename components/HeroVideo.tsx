@@ -49,7 +49,7 @@ export default function HeroVideo() {
           alt="Maritime operations"
           fill
           priority
-          quality={90}
+          quality={75}
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover rounded-3xl"
         />

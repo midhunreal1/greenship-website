@@ -168,8 +168,8 @@ export default function Navbar() {
                   alt={hoveredIndustry.title}
                   fill
                   loading="lazy"
+                  sizes="256px"
                   className="object-cover"
-                  unoptimized
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-navy/70 to-transparent" />
                 <span className="absolute bottom-3 left-3 right-3 text-white font-bold text-sm leading-snug">
@@ -283,8 +283,8 @@ export default function Navbar() {
                   alt={previewTitle}
                   fill
                   loading="lazy"
+                  sizes="256px"
                   className="object-cover"
-                  unoptimized
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-navy/70 to-transparent" />
                 <span className="absolute bottom-3 left-3 right-3 text-white font-bold text-sm leading-snug">

@@ -108,9 +108,11 @@ export default function TestimonialCarousel({
             <button
               key={index}
               onClick={() => setCurrentIndex(index * testimonialsToShow)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${Math.floor(currentIndex / testimonialsToShow) === index ? 'bg-teal w-8' : 'bg-gray-300 hover:bg-gray-400'}`}
+              className="flex items-center justify-center min-w-11 min-h-11"
               aria-label={`Testimonial set ${index + 1}`}
-            />
+            >
+              <span className={`block h-3 rounded-full transition-all duration-300 ${Math.floor(currentIndex / testimonialsToShow) === index ? 'bg-teal w-8' : 'bg-gray-300 hover:bg-gray-400 w-3'}`} />
+            </button>
           ))}
         </div>
       </div>

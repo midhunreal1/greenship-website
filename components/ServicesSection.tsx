@@ -15,7 +15,7 @@ interface ServicesSectionProps {
 
 function ServiceCard({ service }: { service: Service }) {
   return (
-    <div className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-teal/40">
+    <div className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-[box-shadow,transform,border-color] duration-300 hover:-translate-y-2 border border-gray-100 hover:border-teal/40">
       {service.image && (
         <div className="relative h-44 overflow-hidden">
           <Image
@@ -82,10 +82,10 @@ export default function ServicesSection({
 
       {isSmallScreen ? (
         <div className="relative">
-          <button onClick={handlePrev} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-teal hover:text-white transition-all duration-300" aria-label="Previous service">
+          <button onClick={handlePrev} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-11 h-11 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-teal hover:text-white transition-[background-color,color] duration-300" aria-label="Previous service">
             <Icon name="ChevronLeft" size={20} />
           </button>
-          <button onClick={handleNext} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-teal hover:text-white transition-all duration-300" aria-label="Next service">
+          <button onClick={handleNext} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-11 h-11 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-teal hover:text-white transition-[background-color,color] duration-300" aria-label="Next service">
             <Icon name="ChevronRight" size={20} />
           </button>
           <div className="overflow-hidden">
@@ -99,7 +99,7 @@ export default function ServicesSection({
           </div>
           <div className="flex justify-center gap-2 mt-6">
             {services.map((_, index) => (
-              <button key={index} onClick={() => setCurrentIndex(index)} className="p-1.5 rounded-full" aria-label={`Go to service ${index + 1}`}>
+              <button key={index} onClick={() => setCurrentIndex(index)} className="flex items-center justify-center min-w-11 min-h-11" aria-label={`Go to service ${index + 1}`}>
                 <span className={`block h-2 rounded-full transition-all duration-300 ${currentIndex === index ? 'bg-teal w-6' : 'bg-gray-300 w-2'}`} />
               </button>
             ))}
