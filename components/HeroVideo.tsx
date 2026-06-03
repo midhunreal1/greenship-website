@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const COVER = '/cover.png';
 
-export default function HeroVideo() {
+export default function HeroVideo({ priority = false }: { priority?: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [showCover, setShowCover] = useState(true);
   const [playing, setPlaying]   = useState(false); // play btn clicked
@@ -48,7 +48,7 @@ export default function HeroVideo() {
           src={COVER}
           alt="Maritime operations"
           fill
-          priority
+          priority={priority}
           quality={75}
           sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover rounded-3xl"

@@ -126,7 +126,7 @@ export default function Home() {
                       height={300}
                       priority={i < 3}
                       loading={i < 3 ? undefined : 'lazy'}
-                      quality={90}
+                      quality={75}
                       sizes="(max-width: 768px) 33vw, 200px"
                       className="object-cover w-full h-full hover:scale-110 transition-transform duration-500"
                     />
@@ -231,7 +231,7 @@ export default function Home() {
                       width={300}
                       height={300}
                       loading="lazy"
-                      quality={90}
+                      quality={75}
                       sizes="(max-width: 768px) 50vw, 300px"
                       className="object-cover w-full h-full hover:scale-110 transition-transform duration-500"
                     />
