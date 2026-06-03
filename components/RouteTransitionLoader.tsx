@@ -56,7 +56,6 @@ export default function RouteTransitionLoader() {
         width={80}
         height={80}
         className="animate-spin object-contain"
-        priority
       />
     </div>
   );
