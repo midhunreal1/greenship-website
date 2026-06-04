@@ -91,9 +91,9 @@ export default function ServicesSection({
           </button>
           <div className="overflow-hidden">
             <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-              {services.map((service, i) => (
+              {services.map((service) => (
                 <div key={service.id} className="w-full shrink-0 px-6">
-                  <ServiceCard service={service} priority={i === 0} />
+                  <ServiceCard service={service} />
                 </div>
               ))}
             </div>

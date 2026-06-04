@@ -82,9 +82,9 @@ export default function IndustriesSection({
           </button>
           <div className="overflow-hidden">
             <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-              {industries.map((industry, i) => (
+              {industries.map((industry) => (
                 <div key={industry.id} className="w-full shrink-0 px-6">
-                  <IndustryCard industry={industry} priority={i === 0} />
+                  <IndustryCard industry={industry} />
                 </div>
               ))}
             </div>

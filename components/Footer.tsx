@@ -165,6 +165,18 @@ export default function Footer() {
               </div>
 
               <div className="text-sm text-white">
+                <h5 className="font-semibold mb-3">Company Brochure</h5>
+                <a
+                  href="/brochures/GST%20COMPANY%20PROFILE.pdf"
+                  download="GST Company Profile.pdf"
+                  className="inline-flex items-center gap-2 bg-linear-to-r from-teal to-teal-dark text-white px-4 py-2 rounded-md hover:shadow-lg hover:scale-105 transition-all duration-200 text-sm font-semibold"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download Brochure
+                </a>
+              </div>
+
+              <div className="text-sm text-white">
                 <h5 className="font-semibold mb-2">Stay Updated</h5>
                 <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2 sm:flex-row">
                   <input

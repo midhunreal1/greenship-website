@@ -19,6 +19,7 @@ export default function RouteTransitionLoader() {
       if (!anchor) return;
       const href = anchor.getAttribute('href');
       if (!href || !href.startsWith('/')) return;
+      if (anchor.hasAttribute('download')) return;
       const targetPath = href.split('?')[0].split('#')[0];
       if (targetPath === pathname) return;
       if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
