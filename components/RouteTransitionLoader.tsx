@@ -43,19 +43,20 @@ export default function RouteTransitionLoader() {
     return () => { if (hideTimerRef.current) clearTimeout(hideTimerRef.current); };
   }, []);
 
+  if (!isVisible) return null;
+
   return (
     <div
       aria-hidden="true"
       style={{ willChange: 'opacity, transform', transform: 'translateZ(0)' }}
-      className={`fixed inset-0 z-9999 flex items-center justify-center bg-white transition-opacity duration-150 ${
-        isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-      }`}
+      className="fixed inset-0 z-9999 flex items-center justify-center bg-white"
     >
       <Image
         src="/logo.svg"
         alt=""
         width={80}
         height={80}
+        priority
         className="animate-spin object-contain"
       />
     </div>
