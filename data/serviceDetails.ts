@@ -542,58 +542,6 @@ export const serviceDetails: ServiceDetail[] = [
         ],
       },
       {
-        heading: 'BWTS Installation Engineering',
-        body: 'BWTS Installation Engineering refers to the integration of a BWTS into the vessel\'s existing ballast water management infrastructure. At Green Ship Technologies we perform the installation of BWTS on ships that were not originally equipped with the system — essential for compliance with the BWM Convention D-2 standard, monitoring that the species in the discharged water are within the admissible limits. Our team comprises skilled Naval Architects, Marine Engineers, 3D Scanning Experts, Design Software Specialists, Piping, and Electrical Engineers.',
-        items: [
-          {
-            title: 'Vessel Inspections for Feasibility of Installations',
-            description: 'Before proceeding with the installation of a BWTS, it\'s crucial to inspect the vessel to determine its suitability and feasibility for the installation. This involves assessing the existing ballast water management infrastructure and identifying any necessary modifications or adjustments.',
-            image: '/services/retrofit/Vessel-Inspections-for-Feasibility-of-Installations.webp',
-          },
-          {
-            title: '3D Laser Scanning',
-            description: 'Utilizing advanced technology such as 3D laser scanning helps in capturing detailed and accurate measurements of the vessel\'s spaces where the BWTS will be installed. This data is essential for the design and engineering phases.',
-            image: '/services/retrofit/3D-Laser-Scanning.webp',
-          },
-          {
-            title: 'Detailed Design and Engineering Drawings for Class Approval and Client Approval',
-            description: 'Based on the information gathered from vessel inspections and 3D laser scanning, Green Ship Technologies creates detailed design and engineering drawings. These drawings are crucial for obtaining approval from classification societies (Class Approval) and ensuring client satisfaction (Client Approval).',
-            image: '/services/retrofit/Detailed-Design-and-Engineering-Drawings-for-Class-Approval-and-Client-Approval.webp',
-          },
-          {
-            title: 'Installation Assistance at Shipyard or in Ports',
-            description: 'Green Ship Technologies provides support and assistance during the installation phase, either at the shipyard during construction or in ports for retrofitting existing vessels. This involves coordinating with shipyard workers, overseeing the installation process, and ensuring compliance with relevant regulations and standards.',
-            image: '/services/retrofit/installation-Assistance-at-Shipyard-OR-in-Ports.webp',
-          },
-        ],
-      },
-      {
-        heading: 'Scrubber Installation Engineering',
-        body: 'A ship scrubber, also known as an Exhaust Gas Cleaning System (EGCS), is an emissions control device that removes pollutants from the exhaust gas and reduces the amount emitted by ships, making them a more environmentally-friendly mode of transportation. We also represent renowned manufacturers of SOx scrubbers, providing high-quality solutions to meet emissions regulations and enhance environmental sustainability in maritime operations.',
-        items: [
-          {
-            title: 'Vessel Feasibility Inspections',
-            description: 'Conducting vessel inspections to assess the feasibility of installations.',
-            image: '/services/retrofit/scrubber-installation-engineering.webp',
-          },
-          {
-            title: '3D Laser Scanning',
-            description: 'Utilizing 3D laser scanning experts for precise data collection.',
-            image: '/services/retrofit/3D-Laser-Scanning.webp',
-          },
-          {
-            title: 'Design & Engineering Drawings',
-            description: 'Creating detailed design and engineering drawings to obtain approvals from classification societies and clients.',
-            image: '/services/retrofit/Detailed-Design-and-Engineering-Drawings-for-Class-Approval-and-Client-Approval.webp',
-          },
-          {
-            title: 'Installation Assistance',
-            description: 'Providing installation assistance either at shipyards or in ports to ensure successful implementation of scrubber systems.',
-            image: '/services/retrofit/scrubber-installation-engineering2.png',
-          },
-        ],
-      },
-      {
         heading: 'Offshore Engineering',
         layout: 'image-right',
         body: 'At Green Ship Technologies, we specialize in offshore engineering solutions tailored to meet the diverse needs of projects in challenging marine environments, including oil and gas platforms, wind farms, and marine infrastructure.',
